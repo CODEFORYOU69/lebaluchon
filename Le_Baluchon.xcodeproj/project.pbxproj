@@ -18,6 +18,9 @@
 		3E7DCFC62BED0EF600E0889F /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DCFC52BED0EF600E0889F /* CurrencyViewController.swift */; };
 		3E7DCFC82BED0F0C00E0889F /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DCFC72BED0F0C00E0889F /* TranslateViewController.swift */; };
 		3E7DCFCA2BED0F2200E0889F /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DCFC92BED0F2200E0889F /* ForecastViewController.swift */; };
+		3E7DD0142BF1670B00E0889F /* currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DD0132BF1670B00E0889F /* currency.swift */; };
+		3E7DD0172BF1674900E0889F /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DD0162BF1674900E0889F /* CurrencyService.swift */; };
+		3E7DD01A2BF1FA3C00E0889F /* Jersey25Charted-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E7DD0192BF1FA3C00E0889F /* Jersey25Charted-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		3E7DCFC52BED0EF600E0889F /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		3E7DCFC72BED0F0C00E0889F /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		3E7DCFC92BED0F2200E0889F /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		3E7DD0132BF1670B00E0889F /* currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currency.swift; sourceTree = "<group>"; };
+		3E7DD0162BF1674900E0889F /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		3E7DD0192BF1FA3C00E0889F /* Jersey25Charted-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jersey25Charted-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,13 +109,14 @@
 		3E7DCF912BECFD3A00E0889F /* Le_Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				3E7DD0182BF1FA2700E0889F /* fonts */,
+				3E7DD0152BF1672900E0889F /* Services */,
 				3E7DCFC42BED053000E0889F /* Controller */,
 				3E7DCFC32BED052100E0889F /* View */,
 				3E7DCFC22BED051600E0889F /* Model */,
 				3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */,
 				3E7DCF942BECFD3A00E0889F /* SceneDelegate.swift */,
 				3E7DCF9B2BECFD3B00E0889F /* Assets.xcassets */,
-				3E7DCF9D2BECFD3B00E0889F /* LaunchScreen.storyboard */,
 				3E7DCFA02BECFD3B00E0889F /* Info.plist */,
 			);
 			path = Le_Baluchon;
@@ -135,6 +142,7 @@
 		3E7DCFC22BED051600E0889F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3E7DD0132BF1670B00E0889F /* currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				3E7DCF982BECFD3A00E0889F /* Main.storyboard */,
+				3E7DCF9D2BECFD3B00E0889F /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +164,22 @@
 				3E7DCFC92BED0F2200E0889F /* ForecastViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3E7DD0152BF1672900E0889F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3E7DD0162BF1674900E0889F /* CurrencyService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3E7DD0182BF1FA2700E0889F /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3E7DD0192BF1FA3C00E0889F /* Jersey25Charted-Regular.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +288,7 @@
 			files = (
 				3E7DCF9C2BECFD3B00E0889F /* Assets.xcassets in Resources */,
 				3E7DCF9F2BECFD3B00E0889F /* Base in Resources */,
+				3E7DD01A2BF1FA3C00E0889F /* Jersey25Charted-Regular.ttf in Resources */,
 				3E7DCF9A2BECFD3A00E0889F /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +316,9 @@
 			files = (
 				3E7DCF932BECFD3A00E0889F /* AppDelegate.swift in Sources */,
 				3E7DCFC82BED0F0C00E0889F /* TranslateViewController.swift in Sources */,
+				3E7DD0142BF1670B00E0889F /* currency.swift in Sources */,
 				3E7DCFCA2BED0F2200E0889F /* ForecastViewController.swift in Sources */,
+				3E7DD0172BF1674900E0889F /* CurrencyService.swift in Sources */,
 				3E7DCFC62BED0EF600E0889F /* CurrencyViewController.swift in Sources */,
 				3E7DCF952BECFD3A00E0889F /* SceneDelegate.swift in Sources */,
 			);

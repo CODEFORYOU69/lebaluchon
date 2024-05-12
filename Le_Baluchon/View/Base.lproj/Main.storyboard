@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Jersey25Charted-Regular.ttf">
+            <string>Jersey25Charted-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Forecast-->
         <scene sceneID="huC-gv-ohC">
@@ -16,15 +21,6 @@
                     <view key="view" contentMode="scaleToFill" id="1QB-B1-MYB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDR-uj-1ZV">
-                                <rect key="frame" x="158" y="400" width="65" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Dib-md-gDc"/>
                         <color key="backgroundColor" red="0.86666667460000002" green="0.94509804249999996" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
@@ -43,19 +39,10 @@
                     <view key="view" contentMode="scaleToFill" id="4Va-jD-Fjr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="translate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbi-w5-Rfx">
-                                <rect key="frame" x="155" y="349" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="bQd-jQ-oQk"/>
                         <color key="backgroundColor" red="0.86666667460000002" green="0.94509804249999996" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="translate" image="translate" catalog="system" id="bX9-I6-eia">
+                    <tabBarItem key="tabBarItem" title="translate" image="character.bubble" catalog="system" landscapeImage="globe" id="bX9-I6-eia">
                         <color key="badgeColor" red="1" green="0.56364327479999998" blue="0.07040311565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                 </viewController>
@@ -70,17 +57,202 @@
                     <view key="view" contentMode="scaleToFill" id="ObH-tY-gpn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="ckP-1I-wLy">
+                                <rect key="frame" x="15" y="79" width="363" height="683"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Convert Currency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1X-8x-GgW">
+                                        <rect key="frame" x="0.0" y="0.0" width="363" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="CJd-LY-u2L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Jersey25Charted-Regular" family="Jersey 25 Charted" pointSize="28"/>
+                                        <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="3" height="-1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNo-ea-wvz">
+                                        <rect key="frame" x="0.0" y="48" width="363" height="29.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Jersey25Charted-Regular" family="Jersey 25 Charted" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ele-iv-anv">
+                                        <rect key="frame" x="0.0" y="104.33333333333336" width="363" height="171.66666666666663"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="center" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="8sL-jh-7dc" userLabel="localCurrency">
+                                                <rect key="frame" x="30" y="30.000000000000007" width="303" height="111.66666666666669"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter amount in local currency" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QCQ-Mi-rck">
+                                                        <rect key="frame" x="0.0" y="0.0" width="140.66666666666666" height="111.66666666666667"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
+                                                    </textField>
+                                                    <pickerView contentMode="right" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-4d-K4V">
+                                                        <rect key="frame" x="162.66666666666663" y="0.0" width="140.33333333333337" height="111.66666666666667"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="n6F-1A-vPC" id="VjY-En-d3A"/>
+                                                            <outlet property="delegate" destination="n6F-1A-vPC" id="V3f-m8-uYw"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="8sL-jh-7dc" firstAttribute="top" secondItem="Ele-iv-anv" secondAttribute="top" constant="30" id="100-YG-QdG"/>
+                                            <constraint firstAttribute="bottom" secondItem="8sL-jh-7dc" secondAttribute="bottom" constant="30" id="TTw-LG-Ghp"/>
+                                            <constraint firstAttribute="trailing" secondItem="8sL-jh-7dc" secondAttribute="trailing" constant="30" id="WmN-Bv-4Na"/>
+                                            <constraint firstItem="8sL-jh-7dc" firstAttribute="leading" secondItem="Ele-iv-anv" secondAttribute="leading" constant="30" id="wsU-Wb-7mr"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="0.0" height="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-bf-vW5">
+                                        <rect key="frame" x="0.0" y="303" width="363" height="31"/>
+                                        <fontDescription key="fontDescription" name="Jersey25Charted-Regular" family="Jersey 25 Charted" pointSize="31"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9B-J2-4z3">
+                                        <rect key="frame" x="0.0" y="361" width="363" height="256"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-Jf-RgH" userLabel="convertedCurrency">
+                                                <rect key="frame" x="10" y="10" width="343" height="236"/>
+                                                <subviews>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-NC-H9O">
+                                                        <rect key="frame" x="5" y="0.0" width="338" height="196"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="n6F-1A-vPC" id="w1c-AV-h6v"/>
+                                                            <outlet property="delegate" destination="n6F-1A-vPC" id="vl7-0M-KSt"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Converted amount: $0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-vk-CM4">
+                                                        <rect key="frame" x="0.0" y="196" width="343" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="aT9-Th-K2E"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Jersey25Charted-Regular" family="Jersey 25 Charted" pointSize="28"/>
+                                                        <color key="textColor" red="0.62745100259999997" green="0.35365853790000001" blue="0.044174505500000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="e9R-NC-H9O" firstAttribute="leading" secondItem="HE4-Jf-RgH" secondAttribute="leading" constant="5" id="FsX-nl-1mb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="oC4-vk-CM4" secondAttribute="trailing" id="Ptb-PQ-gDA"/>
+                                                    <constraint firstItem="oC4-vk-CM4" firstAttribute="leading" secondItem="HE4-Jf-RgH" secondAttribute="leading" id="rVo-FZ-o0z"/>
+                                                    <constraint firstAttribute="bottom" secondItem="oC4-vk-CM4" secondAttribute="bottom" id="wls-1z-Juh"/>
+                                                    <constraint firstItem="oC4-vk-CM4" firstAttribute="top" secondItem="e9R-NC-H9O" secondAttribute="bottom" id="y58-eK-ano"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="HE4-Jf-RgH" firstAttribute="leading" secondItem="z9B-J2-4z3" secondAttribute="leading" constant="10" id="b6C-rR-smO"/>
+                                            <constraint firstAttribute="trailing" secondItem="HE4-Jf-RgH" secondAttribute="trailing" constant="10" id="kbu-48-NHJ"/>
+                                            <constraint firstItem="HE4-Jf-RgH" firstAttribute="top" secondItem="z9B-J2-4z3" secondAttribute="top" constant="10" id="mNp-xQ-pmB"/>
+                                            <constraint firstAttribute="bottom" secondItem="HE4-Jf-RgH" secondAttribute="bottom" constant="10" id="wCO-a3-Rcj"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="0.0" height="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tum-Si-bYh">
+                                        <rect key="frame" x="0.0" y="644" width="363" height="39"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="CONVERT">
+                                            <fontDescription key="titleFontDescription" name="Jersey25Charted-Regular" family="Jersey 25 Charted" pointSize="25"/>
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="convertButtonTapped:" destination="n6F-1A-vPC" eventType="touchUpInside" id="pbN-z3-VqM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Vjr-bf-vW5" firstAttribute="top" secondItem="Ele-iv-anv" secondAttribute="bottom" constant="27" id="44e-xa-xU0"/>
+                                    <constraint firstItem="Ele-iv-anv" firstAttribute="top" secondItem="vNo-ea-wvz" secondAttribute="bottom" constant="27" id="ceQ-Ck-46J"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="74s-2U-5Gp"/>
-                        <color key="backgroundColor" red="0.86666667460000002" green="0.94509804249999996" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.9468875605" green="0.90282027880000004" blue="0.8556432048" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ckP-1I-wLy" firstAttribute="leading" secondItem="74s-2U-5Gp" secondAttribute="leading" constant="15" id="GDb-DI-y9d"/>
+                            <constraint firstItem="ckP-1I-wLy" firstAttribute="top" secondItem="74s-2U-5Gp" secondAttribute="top" constant="20" id="cwu-5d-vQw"/>
+                            <constraint firstAttribute="bottom" secondItem="ckP-1I-wLy" secondAttribute="bottom" constant="90" id="rDi-Ft-j6h"/>
+                            <constraint firstAttribute="trailing" secondItem="ckP-1I-wLy" secondAttribute="trailing" constant="15" id="x7f-S1-SuQ"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="SGX-TB-Ki1" appends="YES" id="rnV-xo-VNI"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Change" id="YGq-yt-2Tz">
                         <imageReference key="image" image="dollarsign.arrow.circlepath" catalog="system" symbolScale="large" variableValue="0.0"/>
                         <color key="badgeColor" red="1" green="0.56364327479999998" blue="0.07040311565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="amountTextField" destination="QCQ-Mi-rck" id="krV-cE-pzT"/>
+                        <outlet property="convertbutton" destination="Tum-Si-bYh" id="OQ0-Hw-RxQ"/>
+                        <outlet property="fromCurrencyPicker" destination="ocu-4d-K4V" id="ge0-kn-Zc2"/>
+                        <outlet property="resultLabel" destination="oC4-vk-CM4" id="pdu-Pj-B2h"/>
+                        <outlet property="toCurrencyPicker" destination="e9R-NC-H9O" id="R26-ub-us7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4u4-iT-aGZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="SGX-TB-Ki1">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="n6F-1A-vPC" id="BEp-im-FNd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="68" y="-1099"/>
+            <point key="canvasLocation" x="67.938931297709928" y="-1099.2957746478874"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0Y1-SJ-dKz">
@@ -113,11 +285,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="character.bubble" catalog="system" width="128" height="110"/>
         <image name="dollarsign.arrow.circlepath" catalog="system" width="128" height="112"/>
+        <image name="globe" catalog="system" width="128" height="123"/>
         <image name="sun.rain" catalog="system" width="128" height="120"/>
-        <image name="translate" catalog="system" width="128" height="88"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
