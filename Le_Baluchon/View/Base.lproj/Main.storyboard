@@ -39,16 +39,105 @@
                     <view key="view" contentMode="scaleToFill" id="4Va-jD-Fjr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSLATE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RO4-qS-qis">
+                                <rect key="frame" x="5" y="79" width="383" height="19"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VQJ-Xg-ZcG">
+                                <rect key="frame" x="15" y="118" width="363" height="616"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="90" translatesAutoresizingMaskIntoConstraints="NO" id="rxo-dN-DQo">
+                                        <rect key="frame" x="19" y="0.0" width="325.33333333333331" height="154"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="II0-1g-EXC">
+                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="154"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="TRANSLATE"/>
+                                                <connections>
+                                                    <action selector="translateButtonAction:" destination="O7U-Lk-ud5" eventType="touchUpInside" id="Vum-jE-yMf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT8-1D-vvd">
+                                                <rect key="frame" x="207.66666666666666" y="0.0" width="117.66666666666666" height="154"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="SWITCH"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="TEXT TO TRANSLATE" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OaG-qb-M0u">
+                                        <rect key="frame" x="0.0" y="154" width="363" height="154"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ok3-9T-6hK">
+                                        <rect key="frame" x="160.33333333333334" y="308" width="42.666666666666657" height="154"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="TEXT TRANSLATED" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3T3-XT-Ktk">
+                                        <rect key="frame" x="0.0" y="462" width="363" height="154"/>
+                                        <color key="backgroundColor" red="0.87535269660000004" green="0.90282027880000004" blue="0.8556432048" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3T3-XT-Ktk" firstAttribute="top" secondItem="Ok3-9T-6hK" secondAttribute="bottom" id="HM3-ja-Lhy"/>
+                                    <constraint firstItem="3T3-XT-Ktk" firstAttribute="centerX" secondItem="VQJ-Xg-ZcG" secondAttribute="centerX" id="HZd-Yj-uvP"/>
+                                    <constraint firstAttribute="trailing" secondItem="3T3-XT-Ktk" secondAttribute="trailing" id="Jc2-0V-VsH"/>
+                                    <constraint firstItem="Ok3-9T-6hK" firstAttribute="top" secondItem="OaG-qb-M0u" secondAttribute="bottom" id="NGR-wI-wNw"/>
+                                    <constraint firstAttribute="trailing" secondItem="OaG-qb-M0u" secondAttribute="trailing" id="PgH-aj-Aon"/>
+                                    <constraint firstItem="OaG-qb-M0u" firstAttribute="leading" secondItem="VQJ-Xg-ZcG" secondAttribute="leading" id="RJy-0g-2Nk"/>
+                                    <constraint firstItem="3T3-XT-Ktk" firstAttribute="leading" secondItem="VQJ-Xg-ZcG" secondAttribute="leading" id="dU5-5q-oAj"/>
+                                    <constraint firstAttribute="bottom" secondItem="3T3-XT-Ktk" secondAttribute="bottom" id="mgX-Z5-ozc"/>
+                                    <constraint firstItem="OaG-qb-M0u" firstAttribute="top" secondItem="rxo-dN-DQo" secondAttribute="bottom" id="vHC-ZW-9J6"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="bQd-jQ-oQk"/>
                         <color key="backgroundColor" red="0.86666667460000002" green="0.94509804249999996" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="VQJ-Xg-ZcG" firstAttribute="centerX" secondItem="4Va-jD-Fjr" secondAttribute="centerX" id="ICJ-h2-ryK"/>
+                            <constraint firstItem="bQd-jQ-oQk" firstAttribute="trailing" secondItem="VQJ-Xg-ZcG" secondAttribute="trailing" constant="15" id="LfQ-Xt-PXz"/>
+                            <constraint firstItem="RO4-qS-qis" firstAttribute="leading" secondItem="bQd-jQ-oQk" secondAttribute="leading" constant="5" id="Yyk-QT-Hmi"/>
+                            <constraint firstItem="VQJ-Xg-ZcG" firstAttribute="leading" secondItem="bQd-jQ-oQk" secondAttribute="leading" constant="15" id="dYv-UW-8h5"/>
+                            <constraint firstItem="bQd-jQ-oQk" firstAttribute="bottom" secondItem="VQJ-Xg-ZcG" secondAttribute="bottom" constant="35" id="fXc-e5-PQJ"/>
+                            <constraint firstItem="VQJ-Xg-ZcG" firstAttribute="centerY" secondItem="4Va-jD-Fjr" secondAttribute="centerY" id="h0G-SA-3f9"/>
+                            <constraint firstItem="RO4-qS-qis" firstAttribute="top" secondItem="bQd-jQ-oQk" secondAttribute="top" constant="20" id="jA3-ku-cSM"/>
+                            <constraint firstItem="bQd-jQ-oQk" firstAttribute="trailing" secondItem="RO4-qS-qis" secondAttribute="trailing" constant="5" id="wsT-t7-20S"/>
+                            <constraint firstItem="VQJ-Xg-ZcG" firstAttribute="top" secondItem="RO4-qS-qis" secondAttribute="bottom" constant="20" id="xFU-L1-ns3"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="LT6-zT-BlV" appends="YES" id="ge2-fM-Q5E"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="translate" image="character.bubble" catalog="system" landscapeImage="globe" id="bX9-I6-eia">
                         <color key="badgeColor" red="1" green="0.56364327479999998" blue="0.07040311565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="originTranslate" destination="OaG-qb-M0u" id="6x5-BG-Ukn"/>
+                        <outlet property="resultLabel" destination="Ok3-9T-6hK" id="qk8-YM-yoD"/>
+                        <outlet property="swapButton" destination="VT8-1D-vvd" id="HxX-gw-sQB"/>
+                        <outlet property="translateButton" destination="II0-1g-EXC" id="Zg7-lh-XZ7"/>
+                        <outlet property="translatedText" destination="3T3-XT-Ktk" id="Okl-WT-bmc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bU4-Of-fqQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LT6-zT-BlV">
+                    <connections>
+                        <outlet property="delegate" destination="4Va-jD-Fjr" id="loc-pc-g5S"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="703" y="-472"/>
+            <point key="canvasLocation" x="701.52671755725191" y="-472.53521126760563"/>
         </scene>
         <!--Currency-->
         <scene sceneID="O42-d0-qN8">
@@ -66,7 +155,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="CJd-LY-u2L"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Jersey25Charted-Regular" family="Jersey 25 Charted" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="3" height="-1"/>
@@ -289,11 +378,14 @@
         <image name="dollarsign.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="globe" catalog="system" width="128" height="123"/>
         <image name="sun.rain" catalog="system" width="128" height="120"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="viewFlipsideBackgroundColor">
             <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

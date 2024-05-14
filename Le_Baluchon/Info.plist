@@ -16,7 +16,9 @@
 		</dict>
 	</dict>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>Jersey25Charted-Regular.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -39,6 +41,8 @@
 		<false/>
 		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
 		<string>UIWindowSceneSessionRoleApplication</string>
+		<key>GoogleAPIKey</key>
+		<string>AIzaSyD_xlYOPWa53MDDMPtH6V7ruwCktK8GLaw</string>
 	</dict>
 </dict>
 </plist>
