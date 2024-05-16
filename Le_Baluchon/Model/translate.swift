@@ -6,12 +6,30 @@
 //
 
 import Foundation
+
+// Déclaration consolidée des structures
 struct TranslationResponse: Codable {
-    struct Data: Codable {
-        var translations: [Translation]
-    }
-    struct Translation: Codable {
-        var translatedText: String
-    }
-    var data: Data
+    let data: TranslationData
+}
+
+struct TranslationData: Codable {
+    let translations: [Translation]
+}
+
+struct Translation: Codable {
+    let translatedText: String
+}
+
+struct DetectionResponse: Codable {
+    let data: DetectionData
+}
+
+struct DetectionData: Codable {
+    let detections: [[Detection]]
+}
+
+struct Detection: Codable {
+    let language: String
+    let isReliable: Bool
+    let confidence: Float
 }

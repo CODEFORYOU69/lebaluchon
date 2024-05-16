@@ -15,10 +15,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Jersey25Charted-Regular.ttf</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -44,5 +40,9 @@
 		<key>GoogleAPIKey</key>
 		<string>AIzaSyD_xlYOPWa53MDDMPtH6V7ruwCktK8GLaw</string>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro.ttf</string>
+	</array>
 </dict>
 </plist>

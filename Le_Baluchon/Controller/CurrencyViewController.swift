@@ -8,16 +8,21 @@
 
 import UIKit
 
+
+
 class CurrencyViewController: UIViewController {
     private let conversionService = CurrencyConversionService()
         private var exchangeRates: [String: Double]?
         private var selectedFromCurrency: Currency?
         private var selectedToCurrency: Currency?
-        private var currencies: [Currency] = []
+    
+    private var currencies: [Currency] = []
 
-
+    @IBOutlet weak var convertCurrencyLabel: UILabel!
+    @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var convertbutton: UIButton!
     @IBOutlet weak var fromCurrencyPicker: UIPickerView!
     @IBOutlet weak var toCurrencyPicker: UIPickerView!
@@ -28,12 +33,21 @@ class CurrencyViewController: UIViewController {
         currencies = conversionService.currencies
         fromCurrencyPicker.reloadAllComponents()
         toCurrencyPicker.reloadAllComponents()
-
+        styleButtons()
         fetchExchangeRates()
+        styleLabels()
+
+        for family in UIFont.familyNames {
+               print("\(family)")
+               for name in UIFont.fontNames(forFamilyName: family) {
+                   print("  \(name)")
+               }
+           }
 
        
     }
-
+    
+    
 
     @IBAction func convertButtonTapped(_ sender: UIButton) {
         guard let amountText = amountTextField.text,
@@ -87,6 +101,25 @@ class CurrencyViewController: UIViewController {
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    private func styleLabels() {
+           let labels = [fromLabel, toLabel, convertCurrencyLabel]
+           for label in labels {
+               label?.textColor = UIColor.white
+               label?.layer.shadowColor = UIColor.black.cgColor
+               label?.layer.shadowOpacity = 0.7
+               label?.layer.shadowOffset = CGSize(width: 1, height: 1)
+               label?.layer.shadowRadius = 2
+           }
+       }
+    private func styleButtons() {
+           convertbutton.backgroundColor = UIColor.systemBlue
+           convertbutton.setTitleColor(UIColor.white, for: .normal)
+        convertbutton.layer.cornerRadius = 10
+        convertbutton.layer.shadowColor = UIColor.black.cgColor
+        convertbutton.layer.shadowOpacity = 0.2
+        convertbutton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        convertbutton.layer.shadowRadius = 4
+       }
 }
 extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -102,22 +135,23 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let currency = currencies[row]
         
         // Créer un conteneur pour la ligne
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 40)) // Augmentez la hauteur si nécessaire
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 40))
 
         // Configuration de l'image du drapeau
         let flag = UIImage(named: currency.flag)
         let flagImageView = UIImageView(image: flag)
         flagImageView.contentMode = .scaleAspectFit
-        flagImageView.frame = CGRect(x: 5, y: 5, width: 30, height: 30) // Ajustez selon vos besoins
+        flagImageView.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
 
         // Configuration du label pour le code et le pays de la devise
         let label = UILabel()
         label.text = "\(currency.code) - \(currency.country)"
-        label.frame = CGRect(x: 60, y: 0, width: 200, height: 40) // Ajustez selon vos besoins
-        label.font = UIFont(name: "Jersey25Charted-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
+        label.frame = CGRect(x: 60, y: 0, width: 250, height: 40)
+        label.font = UIFont(name: "SF-Pro", size: 15)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.textAlignment = .left
+       
 
         // Ajout des sous-vues au conteneur
         container.addSubview(flagImageView)
@@ -136,4 +170,6 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             }
         fetchExchangeRates()  // Fetch rates again if currency selection changes
 }
+    
+    
     }
