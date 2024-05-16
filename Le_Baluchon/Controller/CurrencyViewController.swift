@@ -112,7 +112,6 @@ class CurrencyViewController: UIViewController {
            }
        }
     private func styleButtons() {
-           convertbutton.backgroundColor = UIColor.systemBlue
            convertbutton.setTitleColor(UIColor.white, for: .normal)
         convertbutton.layer.cornerRadius = 10
         convertbutton.layer.shadowColor = UIColor.black.cgColor

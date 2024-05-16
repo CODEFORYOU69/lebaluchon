@@ -25,6 +25,14 @@
 		3EF158932BF696F80012D8E1 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF158922BF696F80012D8E1 /* WeatherService.swift */; };
 		3EF1589E2BF6AC170012D8E1 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1589D2BF6AC170012D8E1 /* SF-Pro.ttf */; };
 		3EF1589F2BF6AD950012D8E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E7DCF982BECFD3A00E0889F /* Main.storyboard */; };
+		3EF158AA2BF6B6DE0012D8E1 /* cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A42BF6B6DE0012D8E1 /* cloudy.json */; };
+		3EF158AB2BF6B6DE0012D8E1 /* snowy.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A52BF6B6DE0012D8E1 /* snowy.json */; };
+		3EF158AC2BF6B6DE0012D8E1 /* stormy.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A62BF6B6DE0012D8E1 /* stormy.json */; };
+		3EF158AD2BF6B6DE0012D8E1 /* rainy.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A72BF6B6DE0012D8E1 /* rainy.json */; };
+		3EF158AE2BF6B6DE0012D8E1 /* sunny.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A82BF6B6DE0012D8E1 /* sunny.json */; };
+		3EF158AF2BF6B6DE0012D8E1 /* misty.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A92BF6B6DE0012D8E1 /* misty.json */; };
+		3EF158B22BF6BE440012D8E1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EF158B12BF6BE440012D8E1 /* Lottie */; };
+		3EF158B42BF6BFD60012D8E1 /* default.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158B32BF6BFD60012D8E1 /* default.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +75,13 @@
 		3EF1588F2BF588DF0012D8E1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3EF158922BF696F80012D8E1 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		3EF1589D2BF6AC170012D8E1 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		3EF158A42BF6B6DE0012D8E1 /* cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloudy.json; sourceTree = "<group>"; };
+		3EF158A52BF6B6DE0012D8E1 /* snowy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = snowy.json; sourceTree = "<group>"; };
+		3EF158A62BF6B6DE0012D8E1 /* stormy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stormy.json; sourceTree = "<group>"; };
+		3EF158A72BF6B6DE0012D8E1 /* rainy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rainy.json; sourceTree = "<group>"; };
+		3EF158A82BF6B6DE0012D8E1 /* sunny.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sunny.json; sourceTree = "<group>"; };
+		3EF158A92BF6B6DE0012D8E1 /* misty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = misty.json; sourceTree = "<group>"; };
+		3EF158B32BF6BFD60012D8E1 /* default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EF158B22BF6BE440012D8E1 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +133,7 @@
 		3E7DCF912BECFD3A00E0889F /* Le_Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				3EF158A32BF6B6B00012D8E1 /* lottie */,
 				3EF1589C2BF6ABD10012D8E1 /* fonts */,
 				3E7DD0152BF1672900E0889F /* Services */,
 				3E7DCFC42BED053000E0889F /* Controller */,
@@ -125,6 +142,13 @@
 				3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */,
 				3E7DCF942BECFD3A00E0889F /* SceneDelegate.swift */,
 				3E7DCF9B2BECFD3B00E0889F /* Assets.xcassets */,
+				3EF158A42BF6B6DE0012D8E1 /* cloudy.json */,
+				3EF158B32BF6BFD60012D8E1 /* default.json */,
+				3EF158A92BF6B6DE0012D8E1 /* misty.json */,
+				3EF158A72BF6B6DE0012D8E1 /* rainy.json */,
+				3EF158A52BF6B6DE0012D8E1 /* snowy.json */,
+				3EF158A62BF6B6DE0012D8E1 /* stormy.json */,
+				3EF158A82BF6B6DE0012D8E1 /* sunny.json */,
 				3E7DCFA02BECFD3B00E0889F /* Info.plist */,
 			);
 			path = Le_Baluchon;
@@ -194,6 +218,13 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		3EF158A32BF6B6B00012D8E1 /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lottie;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,6 +241,9 @@
 			dependencies = (
 			);
 			name = Le_Baluchon;
+			packageProductDependencies = (
+				3EF158B12BF6BE440012D8E1 /* Lottie */,
+			);
 			productName = Le_Baluchon;
 			productReference = 3E7DCF8F2BECFD3A00E0889F /* Le_Baluchon.app */;
 			productType = "com.apple.product-type.application";
@@ -282,6 +316,9 @@
 				Base,
 			);
 			mainGroup = 3E7DCF862BECFD3A00E0889F;
+			packageReferences = (
+				3EF158B02BF6BE440012D8E1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 3E7DCF902BECFD3A00E0889F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,9 +335,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EF158AF2BF6B6DE0012D8E1 /* misty.json in Resources */,
+				3EF158B42BF6BFD60012D8E1 /* default.json in Resources */,
+				3EF158AC2BF6B6DE0012D8E1 /* stormy.json in Resources */,
 				3EF1589F2BF6AD950012D8E1 /* Main.storyboard in Resources */,
+				3EF158AA2BF6B6DE0012D8E1 /* cloudy.json in Resources */,
 				3E7DCF9C2BECFD3B00E0889F /* Assets.xcassets in Resources */,
+				3EF158AE2BF6B6DE0012D8E1 /* sunny.json in Resources */,
 				3EF1589E2BF6AC170012D8E1 /* SF-Pro.ttf in Resources */,
+				3EF158AD2BF6B6DE0012D8E1 /* rainy.json in Resources */,
+				3EF158AB2BF6B6DE0012D8E1 /* snowy.json in Resources */,
 				3E7DCF9F2BECFD3B00E0889F /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +727,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3EF158B02BF6BE440012D8E1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3EF158B12BF6BE440012D8E1 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3EF158B02BF6BE440012D8E1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E7DCF872BECFD3A00E0889F /* Project object */;
 }

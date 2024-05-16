@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dUP-Xp-cGf">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -12,6 +12,7 @@
     <customFonts key="customFonts">
         <array key="SF-Pro.ttf">
             <string>SFPro-CompressedRegular</string>
+            <string>SFPro-ExpandedMedium</string>
             <string>SFPro-ExpandedThin</string>
             <string>SFPro-Regular</string>
             <string>SFPro-Semibold</string>
@@ -31,14 +32,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PlO-de-alH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zEX-bD-WXV">
                                 <rect key="frame" x="10" y="114" width="373" height="620"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e00-mX-ErA" userLabel="newYorkCardView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e00-mX-ErA" userLabel="newYorkCardView" customClass="LottieAnimationView" customModule="Lottie">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="306"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="68v-dT-45h">
@@ -49,13 +50,13 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMD-VX-KbB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="363" height="54.666666666666664"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dF3-EK-Xn5">
                                                                 <rect key="frame" x="0.0" y="59.666666666666657" width="363" height="63.333333333333343"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -66,7 +67,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York Condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIb-SU-aR3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="363" height="54.666666666666664"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -89,7 +90,7 @@
                                             <constraint firstItem="68v-dT-45h" firstAttribute="top" secondItem="e00-mX-ErA" secondAttribute="top" constant="5" id="iXc-s0-06s"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5y9-pD-SXo" userLabel="localCardView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5y9-pD-SXo" userLabel="localCardView" customClass="LottieAnimationView" customModule="Lottie">
                                         <rect key="frame" x="0.0" y="314" width="373" height="306"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="apP-VS-2Cy">
@@ -100,13 +101,13 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4e-jL-G6J">
                                                                 <rect key="frame" x="0.0" y="0.0" width="363" height="54.666666666666664"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ae1-e7-iA4">
                                                                 <rect key="frame" x="0.0" y="59.666666666666686" width="363" height="63.333333333333343"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -117,13 +118,13 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSO-ub-ped">
                                                                 <rect key="frame" x="0.0" y="0.0" width="363" height="54.666666666666664"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6La-64-uOc">
                                                                 <rect key="frame" x="0.0" y="59.666666666666629" width="363" height="63.333333333333343"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -165,8 +166,10 @@
                         <color key="badgeColor" red="1" green="0.56364327479999998" blue="0.07040311565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="localAnimationView" destination="5y9-pD-SXo" id="5fK-GV-BWq"/>
                         <outlet property="localConditionLabel" destination="6La-64-uOc" id="hMO-9M-Zhz"/>
                         <outlet property="localTemperatureLabel" destination="ae1-e7-iA4" id="AmR-ir-VAj"/>
+                        <outlet property="newYorkAnimationView" destination="e00-mX-ErA" id="DPu-aI-LD1"/>
                         <outlet property="newYorkConditionLabel" destination="T4N-r9-G4j" id="FAh-Bz-sFw"/>
                         <outlet property="newYorkTemperatureLabel" destination="dF3-EK-Xn5" id="Err-Au-9eM"/>
                     </connections>
@@ -188,7 +191,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="C1K-AV-jWZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -199,14 +202,14 @@
                                         <rect key="frame" x="5" y="5" width="353" height="72"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8Z-tP-7Tw">
-                                                <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="19.333333333333332"/>
-                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="99.333333333333329" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bUC-dS-Ly4">
-                                                <rect key="frame" x="0.0" y="27.333333333333339" width="353" height="44.666666666666657"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="0.0" y="28.333333333333339" width="353" height="43.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="nRM-bm-vjG" id="KeK-bN-X6G"/>
@@ -407,6 +410,7 @@
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="II0-1g-EXC">
                                                                 <rect key="frame" x="0.0" y="88.333333333333371" width="333" height="47.666666666666657"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="18"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" title="TRANSLATE">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -594,9 +598,10 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tum-Si-bYh">
                                         <rect key="frame" x="0.0" y="636.33333333333337" width="363" height="46.666666666666629"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="CONVERT">
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
+                                            <fontDescription key="titleFontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="29"/>
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
