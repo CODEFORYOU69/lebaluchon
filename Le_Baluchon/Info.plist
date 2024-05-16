@@ -42,7 +42,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>/Users/younesouasmi/Documents/dev/openclassrooms/openclassroom/projet9/Le_Baluchon/Le_Baluchon/fonts/SF-Pro.ttf</string>
+		<string>SF-Pro.ttf</string>
 	</array>
 </dict>
 </plist>

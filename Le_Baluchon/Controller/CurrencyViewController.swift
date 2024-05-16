@@ -12,12 +12,12 @@ import UIKit
 
 class CurrencyViewController: UIViewController {
     private let conversionService = CurrencyConversionService()
-        private var exchangeRates: [String: Double]?
-        private var selectedFromCurrency: Currency?
-        private var selectedToCurrency: Currency?
+    private var exchangeRates: [String: Double]?
+    private var selectedFromCurrency: Currency?
+    private var selectedToCurrency: Currency?
     
     private var currencies: [Currency] = []
-
+    
     @IBOutlet weak var convertCurrencyLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
@@ -36,19 +36,28 @@ class CurrencyViewController: UIViewController {
         styleButtons()
         fetchExchangeRates()
         styleLabels()
-
+        amountTextField.textColor = UIColor.black
+        amountTextField.layer.borderColor = UIColor.darkGray.cgColor
+        toLabel.layer.cornerRadius = 10
+        fromLabel.layer.cornerRadius = 10
+        
+        
+        
+        
         for family in UIFont.familyNames {
-               print("\(family)")
-               for name in UIFont.fontNames(forFamilyName: family) {
-                   print("  \(name)")
-               }
-           }
-
-       
+            print("\(family)")
+            for name in UIFont.fontNames(forFamilyName: family) {
+                print("  \(name)")
+            }
+        }
+        
+        
     }
     
     
-
+    
+    
+    
     @IBAction func convertButtonTapped(_ sender: UIButton) {
         guard let amountText = amountTextField.text,
               let amount = Double(amountText),
@@ -64,16 +73,16 @@ class CurrencyViewController: UIViewController {
         print("From Currency: \(fromCurrency.code)")
         print("To Currency: \(toCurrency.code)")
         print("Stored Rates: \(rates)")
-            if let convertedAmount = conversionService.convert(amount: amount, from: fromCurrency.code, to: toCurrency.code, rates: rates) {
-                resultLabel.text = String(format: "Converted amount: %.2f \(toCurrency.code)", convertedAmount)
-                print("Conversion succeeded: \(convertedAmount) \(toCurrency.code)")
-
-            } else {
-                resultLabel.text = "Conversion failed"
-                print("Conversion failed")
-
-            }
+        if let convertedAmount = conversionService.convert(amount: amount, from: fromCurrency.code, to: toCurrency.code, rates: rates) {
+            resultLabel.text = String(format: "Result: %.2f \(toCurrency.code)", convertedAmount)
+            print("Conversion succeeded: \(convertedAmount) \(toCurrency.code)")
+            
+        } else {
+            resultLabel.text = "Conversion failed"
+            print("Conversion failed")
+            
         }
+    }
     
     private func fetchExchangeRates() {
         guard let fromCode = selectedFromCurrency?.code, let toCode = selectedToCurrency?.code else {
@@ -89,87 +98,90 @@ class CurrencyViewController: UIViewController {
                     self?.toCurrencyPicker.reloadAllComponents()
                 } else {
                     self?.resultLabel.text = "Failed to fetch exchange rates"
-
+                    
                 }
             }
         }
     }
     private func setupTapGesture() {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            view.addGestureRecognizer(tapGesture)
-        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     private func styleLabels() {
-           let labels = [fromLabel, toLabel, convertCurrencyLabel]
-           for label in labels {
-               label?.textColor = UIColor.white
-               label?.layer.shadowColor = UIColor.black.cgColor
-               label?.layer.shadowOpacity = 0.7
-               label?.layer.shadowOffset = CGSize(width: 1, height: 1)
-               label?.layer.shadowRadius = 2
-           }
-       }
+        let labels = [fromLabel, toLabel, convertCurrencyLabel]
+        for label in labels {
+            label?.textColor = UIColor.black
+            label?.layer.shadowColor = UIColor.black.cgColor
+            label?.layer.shadowOpacity = 0.7
+            label?.layer.shadowOffset = CGSize(width: 1, height: 1)
+            label?.layer.shadowRadius = 2
+        }
+    }
     private func styleButtons() {
-           convertbutton.backgroundColor = UIColor.systemBlue
-           convertbutton.setTitleColor(UIColor.white, for: .normal)
+        
         convertbutton.layer.cornerRadius = 10
         convertbutton.layer.shadowColor = UIColor.black.cgColor
         convertbutton.layer.shadowOpacity = 0.2
         convertbutton.layer.shadowOffset = CGSize(width: 0, height: 2)
         convertbutton.layer.shadowRadius = 4
-       }
+        convertbutton.layer.borderWidth = 1
+        convertbutton.layer.borderColor = UIColor.darkGray.cgColor
+    }
 }
 extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-           return currencies.count
-       }
-
-
+        return currencies.count
+    }
+    
+    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let currency = currencies[row]
         
-        // Créer un conteneur pour la ligne
+        // Create container for lines
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 40))
-
-        // Configuration de l'image du drapeau
+        
+        // Configure flag
         let flag = UIImage(named: currency.flag)
         let flagImageView = UIImageView(image: flag)
         flagImageView.contentMode = .scaleAspectFit
         flagImageView.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
-
-        // Configuration du label pour le code et le pays de la devise
+        
+        // Configure contry code label and currency
         let label = UILabel()
         label.text = "\(currency.code) - \(currency.country)"
         label.frame = CGRect(x: 60, y: 0, width: 250, height: 40)
-        label.font = UIFont(name: "SF-Pro", size: 15)
+        label.font = UIFont(name: "SFPro-CompressedMedium", size: 15)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.textAlignment = .left
-       
-
-        // Ajout des sous-vues au conteneur
+        label.textColor = UIColor.black
+        
+        
+        
+        // add subview to container
         container.addSubview(flagImageView)
         container.addSubview(label)
         
         return container
     }
-
-
+    
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            let selectedCurrency = currencies[row]
-            if pickerView == fromCurrencyPicker {
-                selectedFromCurrency = selectedCurrency
-            } else if pickerView == toCurrencyPicker {
-                selectedToCurrency = selectedCurrency
-            }
+        let selectedCurrency = currencies[row]
+        if pickerView == fromCurrencyPicker {
+            selectedFromCurrency = selectedCurrency
+        } else if pickerView == toCurrencyPicker {
+            selectedToCurrency = selectedCurrency
+        }
         fetchExchangeRates()  // Fetch rates again if currency selection changes
-}
-    
-    
     }
+    
+    
+}

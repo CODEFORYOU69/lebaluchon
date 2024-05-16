@@ -32,19 +32,18 @@ class CardView: UIView {
         self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.borderWidth = 0.5
         
-        // Couleur de fond de la carte
-        self.backgroundColor = .white
     }
 }
 
 
 class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-
+    
     @IBOutlet weak var translatedText: UITextView!
     @IBOutlet weak var originTranslate: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
     
+    @IBOutlet weak var translateTitle: UILabel!
     @IBOutlet weak var targetLanguageLabel: UILabel!
     @IBOutlet weak var sourceLanguageLabel: UILabel!
     @IBOutlet weak var swapLanguagesButtonTapped: UIButton!
@@ -78,14 +77,20 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         styleTextField(sourceLanguageTextField)
         styleTextField(targetLanguageTextField)
+        styleTextView(translatedText)
+        styleTextView(originTranslate)
         
         styleButton(translateButton)
+        styleLabel(translateTitle)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadUserLanguage()
+        updateLanguageDisplay()
     }
     
     func loadUserLanguage() {
         if let userLanguage = UserDefaults.standard.string(forKey: "userLanguage") {
-            print("Texte original avant échange : \(String(describing: UserDefaults.standard.string(forKey: "userLanguage")))")
-
             sourceLanguage = userLanguage
             sourceLanguageTextField.text = languageNames[userLanguage]
         } else {
@@ -95,29 +100,8 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
-    func styleTextField(_ textField: UITextField) {
-        textField.layer.cornerRadius = 8
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOpacity = 0.1
-        textField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        textField.layer.shadowRadius = 4
-        textField.backgroundColor = UIColor.white
-        textField.textColor = UIColor.black
-        textField.font = UIFont(name: "SF-Pro", size: 16)
-    }
     
-    func styleButton(_ button: UIButton) {
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 4
-        button.titleLabel?.font = UIFont(name: "SF-Pro", size: 18)
-    }
+    
     
     func setupLanguagePicker() {
         languagePicker.delegate = self
@@ -126,7 +110,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         targetLanguageTextField.inputView = languagePicker
         sourceLanguageTextField.delegate = self
         targetLanguageTextField.delegate = self
-
+        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
@@ -157,7 +141,6 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             "fr": ["en": "Français", "es": "Francés", "de": "Französisch", "it": "Francese", "pt": "Francês", "zh": "法语", "ja": "フランス語"],
             "es": ["en": "Español", "fr": "Espagnol", "de": "Spanisch", "it": "Spagnolo", "pt": "Espanhol", "zh": "西班牙语", "ja": "スペイン語"],
             "de": ["en": "Deutsch", "fr": "Allemand", "es": "Alemán", "it": "Tedesco", "pt": "Alemão", "zh": "德语", "ja": "ドイツ語"],
-            // Ajouter d'autres traductions nécessaires ici...
         ]
         return translations[language]?[userLanguage] ?? languageNames[language] ?? language
     }
@@ -176,39 +159,39 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-
+        
         if let currentLanguage = textField.text, let index = languages.firstIndex(of: currentLanguage) {
             languagePicker.selectRow(index, inComponent: 0, animated: false)
         }
     }
-   
+    
     @IBAction func swapLanguagesButtonTapped(_ sender: UIButton) {
         print("Bouton de changement de langue appuyé")
         print("Langue source avant échange : \(sourceLanguage)")
         print("Langue cible avant échange : \(targetLanguage)")
-
+        
         (sourceLanguage, targetLanguage) = (targetLanguage, sourceLanguage)
-
+        
         print("Langue source après échange : \(sourceLanguage)")
         print("Langue cible après échange : \(targetLanguage)")
-
+        
         updateLanguageDisplay()
         
         print("Texte original avant échange : \(originTranslate.text ?? "")")
         print("Texte traduit avant échange : \(translatedText.text ?? "")")
         
         (originTranslate.text, translatedText.text) = (translatedText.text, originTranslate.text)
-
+        
         print("Texte original après échange : \(originTranslate.text ?? "")")
         print("Texte traduit après échange : \(translatedText.text ?? "")")
     }
-
+    
     func updateLanguageDisplay() {
         sourceLanguageLabel.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
         targetLanguageLabel.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
         sourceLanguageTextField.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
         targetLanguageTextField.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
-
+        
         print("Affichage des langues mis à jour :")
         print("Label de la langue source : \(sourceLanguageLabel.text ?? "")")
         print("Label de la langue cible : \(targetLanguageLabel.text ?? "")")
@@ -242,12 +225,12 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             }
         }
     }
-
+    
     private func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
