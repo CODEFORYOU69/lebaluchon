@@ -90,6 +90,8 @@ class ForecastViewController: UIViewController {
         case "few clouds", "scattered clouds", "broken clouds", "overcast clouds":
             animationName = "cloudy"
         case "shower rain", "rain":
+            animationName = "rainy"
+        case "thunderstorm":
             animationName = "stormy"
         case "thunderstorm":
             animationName = "rainy"

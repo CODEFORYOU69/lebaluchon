@@ -261,6 +261,13 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		3EF158A32BF6B6B00012D8E1 /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lottie;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
