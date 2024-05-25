@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E00FE542C023FF100E53745 /* MockupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE532C023FF100E53745 /* MockupTest.swift */; };
+		3E00FE592C0246A600E53745 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3E00FE582C0246A600E53745 /* Lottie */; };
 		3E10E2D42BF2D3420006E483 /* translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10E2D32BF2D3420006E483 /* translate.swift */; };
 		3E747C1B2BF2DBA30061E19E /* translateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E747C1A2BF2DBA30061E19E /* translateService.swift */; };
 		3E7DCF932BECFD3A00E0889F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */; };
@@ -27,7 +28,6 @@
 		3EC7C8AD2BF763B4002928D1 /* MockWeatherResponse.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC7C8A52BF6D4D0002928D1 /* MockWeatherResponse.json */; };
 		3EC7C8AF2BF763BC002928D1 /* MockTranslationResponse.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC7C89F2BF6D3FC002928D1 /* MockTranslationResponse.json */; };
 		3EC7C8B12BF764A6002928D1 /* MockDetectionResponse.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC7C8B02BF7645C002928D1 /* MockDetectionResponse.json */; };
-		3EC7C8B52BFF7B47002928D1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EC7C8B42BFF7B47002928D1 /* Lottie */; };
 		3EC7C8B82C002398002928D1 /* style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7C8B72C002398002928D1 /* style.swift */; };
 		3EF158902BF588DF0012D8E1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1588F2BF588DF0012D8E1 /* SettingsViewController.swift */; };
 		3EF158932BF696F80012D8E1 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF158922BF696F80012D8E1 /* WeatherService.swift */; };
@@ -110,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC7C8B52BFF7B47002928D1 /* Lottie in Frameworks */,
+				3E00FE592C0246A600E53745 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,13 +261,6 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		3EF158A32BF6B6B00012D8E1 /* lottie */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = lottie;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,7 +278,7 @@
 			);
 			name = Le_Baluchon;
 			packageProductDependencies = (
-				3EC7C8B42BFF7B47002928D1 /* Lottie */,
+				3E00FE582C0246A600E53745 /* Lottie */,
 			);
 			productName = Le_Baluchon;
 			productReference = 3E7DCF8F2BECFD3A00E0889F /* Le_Baluchon.app */;
@@ -305,6 +298,8 @@
 				3E7DCFA72BECFD3B00E0889F /* PBXTargetDependency */,
 			);
 			name = Le_BaluchonTests;
+			packageProductDependencies = (
+			);
 			productName = Le_BaluchonTests;
 			productReference = 3E7DCFA52BECFD3B00E0889F /* Le_BaluchonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -338,7 +333,7 @@
 			);
 			mainGroup = 3E7DCF862BECFD3A00E0889F;
 			packageReferences = (
-				3EC7C8B32BFF7A7A002928D1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				3E00FE572C0246A600E53745 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 3E7DCF902BECFD3A00E0889F /* Products */;
 			projectDirPath = "";
@@ -684,7 +679,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3EC7C8B32BFF7A7A002928D1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		3E00FE572C0246A600E53745 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -695,9 +690,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3EC7C8B42BFF7B47002928D1 /* Lottie */ = {
+		3E00FE582C0246A600E53745 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3EC7C8B32BFF7A7A002928D1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 3E00FE572C0246A600E53745 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
