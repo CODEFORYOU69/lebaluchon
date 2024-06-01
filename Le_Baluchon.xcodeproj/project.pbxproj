@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3E00FE542C023FF100E53745 /* MockupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE532C023FF100E53745 /* MockupTest.swift */; };
 		3E00FE592C0246A600E53745 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3E00FE582C0246A600E53745 /* Lottie */; };
+		3E00FE5B2C024C8B00E53745 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5A2C024C8B00E53745 /* SettingsService.swift */; };
+		3E00FE5D2C0256B800E53745 /* SettingsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5C2C0256B800E53745 /* SettingsServiceTests.swift */; };
+		3E00FE5F2C02591600E53745 /* TestUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5E2C02591600E53745 /* TestUrl.swift */; };
+		3E00FE612C025A6B00E53745 /* protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE602C025A6B00E53745 /* protocol.swift */; };
 		3E10E2D42BF2D3420006E483 /* translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10E2D32BF2D3420006E483 /* translate.swift */; };
 		3E747C1B2BF2DBA30061E19E /* translateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E747C1A2BF2DBA30061E19E /* translateService.swift */; };
 		3E7DCF932BECFD3A00E0889F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */; };
@@ -69,6 +73,12 @@
 
 /* Begin PBXFileReference section */
 		3E00FE532C023FF100E53745 /* MockupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupTest.swift; sourceTree = "<group>"; };
+		3E00FE5A2C024C8B00E53745 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		3E00FE5C2C0256B800E53745 /* SettingsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsServiceTests.swift; sourceTree = "<group>"; };
+		3E00FE5E2C02591600E53745 /* TestUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUrl.swift; sourceTree = "<group>"; };
+		3E00FE602C025A6B00E53745 /* protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocol.swift; sourceTree = "<group>"; };
+		3E00FE632C025DF500E53745 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3E00FE662C09419B00E53745 /* Le_Baluchon.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Le_Baluchon.xctestplan; sourceTree = "<group>"; };
 		3E10E2D32BF2D3420006E483 /* translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translate.swift; sourceTree = "<group>"; };
 		3E747C1A2BF2DBA30061E19E /* translateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translateService.swift; sourceTree = "<group>"; };
 		3E7DCF8F2BECFD3A00E0889F /* Le_Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Le_Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				3E00FE532C023FF100E53745 /* MockupTest.swift */,
+				3E00FE5E2C02591600E53745 /* TestUrl.swift */,
+				3E00FE602C025A6B00E53745 /* protocol.swift */,
 			);
 			path = Mockup;
 			sourceTree = "<group>";
@@ -135,6 +147,7 @@
 		3E7DCF862BECFD3A00E0889F = {
 			isa = PBXGroup;
 			children = (
+				3E00FE662C09419B00E53745 /* Le_Baluchon.xctestplan */,
 				3E7DCF912BECFD3A00E0889F /* Le_Baluchon */,
 				3E7DCFA82BECFD3B00E0889F /* Le_BaluchonTests */,
 				3E7DCF902BECFD3A00E0889F /* Products */,
@@ -185,6 +198,7 @@
 				3EC7C8982BF6D17B002928D1 /* CurrencyConversionServiceTests.swift */,
 				3EC7C89A2BF6D23E002928D1 /* TranslationServiceTests.swift */,
 				3EC7C89C2BF6D306002928D1 /* WeatherServiceTests.swift */,
+				3E00FE5C2C0256B800E53745 /* SettingsServiceTests.swift */,
 			);
 			path = Le_BaluchonTests;
 			sourceTree = "<group>";
@@ -224,6 +238,7 @@
 				3E7DD0162BF1674900E0889F /* CurrencyService.swift */,
 				3E747C1A2BF2DBA30061E19E /* translateService.swift */,
 				3EF158922BF696F80012D8E1 /* WeatherService.swift */,
+				3E00FE5A2C024C8B00E53745 /* SettingsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -330,6 +345,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 3E7DCF862BECFD3A00E0889F;
 			packageReferences = (
@@ -372,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E10E2D42BF2D3420006E483 /* translate.swift in Sources */,
+				3E00FE5F2C02591600E53745 /* TestUrl.swift in Sources */,
 				3E7DCF932BECFD3A00E0889F /* AppDelegate.swift in Sources */,
 				3EF158902BF588DF0012D8E1 /* SettingsViewController.swift in Sources */,
 				3E7DCFC82BED0F0C00E0889F /* TranslateViewController.swift in Sources */,
@@ -381,8 +398,10 @@
 				3EC7C8B82C002398002928D1 /* style.swift in Sources */,
 				3E7DD0172BF1674900E0889F /* CurrencyService.swift in Sources */,
 				3E7DCFC62BED0EF600E0889F /* CurrencyViewController.swift in Sources */,
+				3E00FE612C025A6B00E53745 /* protocol.swift in Sources */,
 				3E00FE542C023FF100E53745 /* MockupTest.swift in Sources */,
 				3E747C1B2BF2DBA30061E19E /* translateService.swift in Sources */,
+				3E00FE5B2C024C8B00E53745 /* SettingsService.swift in Sources */,
 				3E7DCF952BECFD3A00E0889F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +412,7 @@
 			files = (
 				3EC7C8972BF6D126002928D1 /* CurrencyTests.swift in Sources */,
 				3EC7C89D2BF6D306002928D1 /* WeatherServiceTests.swift in Sources */,
+				3E00FE5D2C0256B800E53745 /* SettingsServiceTests.swift in Sources */,
 				3EC7C8992BF6D17B002928D1 /* CurrencyConversionServiceTests.swift in Sources */,
 				3E7DCFAA2BECFD3B00E0889F /* Le_BaluchonTests.swift in Sources */,
 				3EC7C89B2BF6D23E002928D1 /* TranslationServiceTests.swift in Sources */,
@@ -422,6 +442,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3E7DCF9E2BECFD3B00E0889F /* Base */,
+				3E00FE632C025DF500E53745 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -434,6 +455,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -497,6 +519,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

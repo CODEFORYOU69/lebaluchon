@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct ExchangeRatesResponse: Codable {
     let success: Bool
     let timestamp: Int
@@ -16,12 +15,13 @@ struct ExchangeRatesResponse: Codable {
     let rates: [String: Double]
 }
 
+typealias CurrencyMap = [String: Double]
 
 class CurrencyConversionService {
     private let apiKey: String
     private let baseUrl: String
     private let userDefaults: UserDefaults
-    private let urlSession: URLSession
+    private let urlSession: URLSessionProtocol
     private let exchangeRatesKey = "exchangeRates"
     private let lastUpdateKey = "lastUpdate"
 
@@ -31,60 +31,58 @@ class CurrencyConversionService {
         Currency(code: "GBP", country: "United Kingdom", flag: "gb"),
         Currency(code: "JPY", country: "Japan", flag: "jp"),
         Currency(code: "CAD", country: "Canada", flag: "ca"),
-
+        Currency(code: "MAD", country: "Morocco", flag: "ma"),
     ]
 
     init(apiKey: String = "7d28069a0e2be3744db223ee0dcdcd14",
          baseUrl: String = "http://data.fixer.io/api/latest",
          userDefaults: UserDefaults = .standard,
-         urlSession: URLSession = .shared) {
+         urlSession: URLSessionProtocol = URLSession.shared) {
         self.apiKey = apiKey
         self.baseUrl = baseUrl
         self.userDefaults = userDefaults
         self.urlSession = urlSession
     }
+    
 
-    func fetchExchangeRates(for currencyCodes: [String], completion: @escaping ([String: Double]?) -> Void) {
+    func fetchExchangeRates(for currencyCodes: [String], completion: @escaping (Result<CurrencyMap, Error>) -> Void) {
         if let lastUpdate = userDefaults.object(forKey: lastUpdateKey) as? Date,
            let storedData = userDefaults.data(forKey: exchangeRatesKey),
            Calendar.current.isDateInToday(lastUpdate) {
-            do {
-                let storedRates = try JSONDecoder().decode([String: Double].self, from: storedData)
+            let result = Result {
+                let storedRates = try JSONDecoder().decode(CurrencyMap.self, from: storedData)
                 if currencyCodes.allSatisfy({ storedRates.keys.contains($0) }) {
-                    print("Using cached exchange rates for required currencies.")
-                    completion(storedRates)
-                    return
+                    return storedRates
+                } else {
+                    throw NSError(domain: "CurrencyConversionServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Required currencies not found in cached rates"])
                 }
-            } catch {
-                print("Failed to decode stored exchange rates: \(error.localizedDescription)")
             }
+            completion(result)
+            return
         }
 
-        //  if currency are not availables or data too old , do a new api call 
+        // If currency rates are not available or data is too old, do a new API call
         print("Fetching new exchange rates because required currencies are not all available in cache or data is outdated.")
         fetchNewExchangeRates(completion: completion)
     }
 
-    private func fetchNewExchangeRates(completion: @escaping ([String: Double]?) -> Void) {
+    private func fetchNewExchangeRates(completion: @escaping (Result<CurrencyMap, Error>) -> Void) {
         let urlString = "\(baseUrl)?access_key=\(apiKey)"
         guard let url = URL(string: urlString) else {
-            print("Invalid URL: \(urlString)")
-            completion(nil)
+            completion(.failure(NSError(domain: "CurrencyConversionServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
 
-        print("Starting request to fetch new exchange rates: \(urlString)")
+        let request = URLRequest(url: url)
 
-        let task = urlSession.dataTask(with: url) { [weak self] data, response, error in
+        let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
             if let error = error {
-                print("Error during data task: \(error.localizedDescription)")
-                completion(nil)
+                completion(.failure(error))
                 return
             }
 
             guard let data = data else {
-                print("No data received")
-                completion(nil)
+                completion(.failure(NSError(domain: "CurrencyConversionServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
                 return
             }
 
@@ -94,15 +92,12 @@ class CurrencyConversionService {
                     let rates = exchangeRatesResponse.rates
                     self?.userDefaults.set(try? JSONEncoder().encode(rates), forKey: self?.exchangeRatesKey ?? "")
                     self?.userDefaults.set(Date(), forKey: self?.lastUpdateKey ?? "")
-                    print("New exchange rates stored.")
-                    completion(rates)
+                    completion(.success(rates))
                 } else {
-                    print("Failed to fetch exchange rates: response indicates failure.")
-                    completion(nil)
+                    completion(.failure(NSError(domain: "CurrencyConversionServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch exchange rates"])))
                 }
             } catch {
-                print("JSON parsing error for new exchange rates: \(error.localizedDescription)")
-                completion(nil)
+                completion(.failure(error))
             }
         }
         task.resume()
@@ -110,14 +105,11 @@ class CurrencyConversionService {
 
     func convert(amount: Double, from: String, to: String, rates: [String: Double]) -> Double? {
         guard let fromRate = rates[from], let toRate = rates[to] else {
-            print("Conversion failed: missing rates for \(from) or \(to)")
             return nil
         }
         let baseAmount = amount / fromRate
         let convertedAmount = baseAmount * toRate
-        print("Converted \(amount) \(from) to \(convertedAmount) \(to)")
         return convertedAmount
     }
 }
-
 

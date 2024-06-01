@@ -4,8 +4,38 @@
 //
 //  Created by younes ouasmi on 16/05/2024.
 //
-
 import Foundation
+
+enum WeatherServiceError: Error, LocalizedError, Equatable {
+    case noData
+    case decodingError
+    case customError(String)
+
+    var errorDescription: String? {
+        switch self {
+        
+        case .noData:
+            return "No data received"
+        case .decodingError:
+            return "Failed to decode data"
+        case .customError(let message):
+            return message
+        }
+    }
+    
+    static func == (lhs: WeatherServiceError, rhs: WeatherServiceError) -> Bool {
+        switch (lhs, rhs) {
+        case
+             (.noData, .noData),
+             (.decodingError, .decodingError):
+            return true
+        case (.customError(let lhsMessage), .customError(let rhsMessage)):
+            return lhsMessage == rhsMessage
+        default:
+            return false
+        }
+    }
+}
 
 struct WeatherResponse: Codable {
     let main: Main
@@ -23,29 +53,33 @@ struct WeatherResponse: Codable {
 class WeatherService {
     static let apiKey = "829a9879a4c00c7941c92290f12eaed6"
     
-    static func fetchWeather(for city: String, urlSession: URLSession = .shared, completion: @escaping (WeatherResponse?, Error?) -> Void) {
+    static func fetchWeather(for city: String, urlSession: URLSessionProtocol = URLSession.shared, completion: @escaping (Result<WeatherResponse, WeatherServiceError>) -> Void) {
         let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&units=metric&appid=\(apiKey)"
-        guard let url = URL(string: urlString) else {
-            completion(nil, NSError(domain: "WeatherServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
+        guard let url = URL(string: urlString), !city.isEmpty else {
+            completion(.failure(.decodingError))
             return
         }
         
-        let task = urlSession.dataTask(with: url) { data, response, error in
+        let request = URLRequest(url: url)
+        
+        let task = urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(nil, error)
+                completion(.failure(.customError(error.localizedDescription)))
                 return
             }
-            guard let data = data else {
-                completion(nil, NSError(domain: "WeatherServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
+            guard let data = data, !data.isEmpty else {
+                completion(.failure(.noData))
                 return
             }
             do {
                 let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: data)
-                completion(weatherResponse, nil)
+                completion(.success(weatherResponse))
             } catch {
-                completion(nil, error)
+                completion(.failure(.decodingError))
             }
         }
         task.resume()
     }
 }
+
+

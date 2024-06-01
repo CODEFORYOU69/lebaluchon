@@ -4,8 +4,6 @@
 //
 //  Created by younes ouasmi on 17/05/2024.
 //
-
-
 import XCTest
 @testable import Le_Baluchon
 
@@ -39,9 +37,13 @@ class CurrencyConversionServiceTests: XCTestCase {
         let expectation = self.expectation(description: "FetchExchangeRatesWithCachedData")
         let requiredCurrencies = ["USD", "EUR"]
         
-        conversionService.fetchExchangeRates(for: requiredCurrencies) { fetchedRates in
-            XCTAssertNotNil(fetchedRates, "Rates should not be nil")
-            XCTAssertEqual(fetchedRates!, rates, "Fetched rates should match cached rates")
+        conversionService.fetchExchangeRates(for: requiredCurrencies) { result in
+            switch result {
+            case .success(let fetchedRates):
+                XCTAssertEqual(fetchedRates, rates, "Fetched rates should match cached rates")
+            case .failure(let error):
+                XCTFail("Expected success but got error: \(error)")
+            }
             expectation.fulfill()
         }
         
@@ -56,8 +58,13 @@ class CurrencyConversionServiceTests: XCTestCase {
         let urlSession = MockURLSession.createMockSession(data: nil, response: nil, error: NSError(domain: "TestError", code: 0, userInfo: nil))
         conversionService = CurrencyConversionService(apiKey: "invalid_key", baseUrl: "http://invalid_url", userDefaults: mockUserDefaults, urlSession: urlSession)
         
-        conversionService.fetchExchangeRates(for: requiredCurrencies) { rates in
-            XCTAssertNil(rates, "Rates should be nil due to an error")
+        conversionService.fetchExchangeRates(for: requiredCurrencies) { result in
+            switch result {
+            case .success:
+                XCTFail("Expected failure but got success")
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
             expectation.fulfill()
         }
         
@@ -73,8 +80,13 @@ class CurrencyConversionServiceTests: XCTestCase {
         let urlSession = MockURLSession.createMockSession(data: invalidJSONData, response: nil, error: nil)
         conversionService = CurrencyConversionService(apiKey: "test_key", baseUrl: "http://test_url", userDefaults: mockUserDefaults, urlSession: urlSession)
         
-        conversionService.fetchExchangeRates(for: requiredCurrencies) { rates in
-            XCTAssertNil(rates, "Rates should be nil due to invalid JSON response")
+        conversionService.fetchExchangeRates(for: requiredCurrencies) { result in
+            switch result {
+            case .success:
+                XCTFail("Expected failure but got success")
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
             expectation.fulfill()
         }
         
@@ -89,10 +101,16 @@ class CurrencyConversionServiceTests: XCTestCase {
         let requiredCurrencies = ["USD", "EUR"]
         
         // Simulate an empty network response
-        conversionService = CurrencyConversionService(apiKey: "invalid_key", baseUrl: "http://invalid_url", userDefaults: mockUserDefaults)
+        let urlSession = MockURLSession.createMockSession(data: nil, response: nil, error: nil)
+        conversionService = CurrencyConversionService(apiKey: "invalid_key", baseUrl: "http://invalid_url", userDefaults: mockUserDefaults, urlSession: urlSession)
         
-        conversionService.fetchExchangeRates(for: requiredCurrencies) { rates in
-            XCTAssertNil(rates, "Rates should be nil because no data is cached and the network request should fail")
+        conversionService.fetchExchangeRates(for: requiredCurrencies) { result in
+            switch result {
+            case .success:
+                XCTFail("Expected failure but got success")
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
             expectation.fulfill()
         }
         
@@ -107,8 +125,13 @@ class CurrencyConversionServiceTests: XCTestCase {
         let urlSession = MockURLSession.createMockSession(data: nil, response: nil, error: nil)
         conversionService = CurrencyConversionService(apiKey: "test_key", baseUrl: "http://test_url", userDefaults: mockUserDefaults, urlSession: urlSession)
         
-        conversionService.fetchExchangeRates(for: requiredCurrencies) { rates in
-            XCTAssertNil(rates, "Rates should be nil because no data was received")
+        conversionService.fetchExchangeRates(for: requiredCurrencies) { result in
+            switch result {
+            case .success:
+                XCTFail("Expected failure but got success")
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
             expectation.fulfill()
         }
         
@@ -135,18 +158,22 @@ class CurrencyConversionServiceTests: XCTestCase {
         let urlSession = MockURLSession.createMockSession(data: validJSONData, response: nil, error: nil)
         conversionService = CurrencyConversionService(apiKey: "test_key", baseUrl: "http://test_url", userDefaults: mockUserDefaults, urlSession: urlSession)
         
-        conversionService.fetchExchangeRates(for: requiredCurrencies) { rates in
-            XCTAssertNotNil(rates, "Rates should not be nil")
-            XCTAssertEqual(rates?["USD"], 1.2, "USD rate should be 1.2")
-            XCTAssertEqual(rates?["EUR"], 1.0, "EUR rate should be 1.0")
-            
-            // Verify that the rates are stored in UserDefaults
-            if let storedData = self.mockUserDefaults.data(forKey: "exchangeRates") {
-                let storedRates = try? JSONDecoder().decode([String: Double].self, from: storedData)
-                XCTAssertEqual(storedRates?["USD"], 1.2, "Stored USD rate should be 1.2")
-                XCTAssertEqual(storedRates?["EUR"], 1.0, "Stored EUR rate should be 1.0")
-            } else {
-                XCTFail("Rates should be stored in UserDefaults")
+        conversionService.fetchExchangeRates(for: requiredCurrencies) { result in
+            switch result {
+            case .success(let rates):
+                XCTAssertEqual(rates["USD"], 1.2, "USD rate should be 1.2")
+                XCTAssertEqual(rates["EUR"], 1.0, "EUR rate should be 1.0")
+                
+                // Verify that the rates are stored in UserDefaults
+                if let storedData = self.mockUserDefaults.data(forKey: "exchangeRates") {
+                    let storedRates = try? JSONDecoder().decode([String: Double].self, from: storedData)
+                    XCTAssertEqual(storedRates?["USD"], 1.2, "Stored USD rate should be 1.2")
+                    XCTAssertEqual(storedRates?["EUR"], 1.0, "Stored EUR rate should be 1.0")
+                } else {
+                    XCTFail("Rates should be stored in UserDefaults")
+                }
+            case .failure(let error):
+                XCTFail("Expected success but got error: \(error)")
             }
             expectation.fulfill()
         }

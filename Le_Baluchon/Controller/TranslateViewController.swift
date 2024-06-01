@@ -31,10 +31,8 @@ class CardView: UIView {
         // Ajout d'une bordure optionnelle
         self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.borderWidth = 0.5
-        
     }
 }
-
 
 class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -42,7 +40,6 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var originTranslate: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
-    
     @IBOutlet weak var translateTitle: UILabel!
     @IBOutlet weak var targetLanguageLabel: UILabel!
     @IBOutlet weak var sourceLanguageLabel: UILabel!
@@ -81,8 +78,8 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         styleTextView(originTranslate)
         
         styleButton(translateButton)
-        styleLabel(translateTitle)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadUserLanguage()
@@ -99,9 +96,6 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             sourceLanguageTextField.text = languageNames["en"]
         }
     }
-    
-    
-    
     
     func setupLanguagePicker() {
         languagePicker.delegate = self
@@ -203,24 +197,27 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             return
         }
         
-        TranslationService.detectLanguage(for: text) { [weak self] (detectedLanguage: String?, error: Error?) in
+        TranslationService.detectLanguage(for: text) { [weak self] result in
             DispatchQueue.main.async {
-                if let detectedLanguage = detectedLanguage {
+                switch result {
+                case .success(let detectedLanguage):
                     self?.sourceLanguage = detectedLanguage
                     self?.sourceLanguageTextField.text = self?.translateLanguageName(language: detectedLanguage, to: detectedLanguage)
                     self?.updateLanguageDisplay()
                     
-                    TranslationService.translate(text: text, from: detectedLanguage, to: self?.targetLanguage ?? "en") { (translatedText: String?, error: Error?) in
+                    TranslationService.translate(text: text, from: detectedLanguage, to: self?.targetLanguage ?? "en") { result in
                         DispatchQueue.main.async {
-                            if let translatedText = translatedText {
+                            switch result {
+                            case .success(let translatedText):
                                 self?.translatedText.text = translatedText
-                            } else {
-                                self?.resultLabel.text = error?.localizedDescription ?? "Failed to translate"
+                            case .failure(let error):
+                                self?.resultLabel.text = error.localizedDescription
                             }
                         }
                     }
-                } else {
-                    self?.resultLabel.text = error?.localizedDescription ?? "Failed to detect language"
+                    
+                case .failure(let error):
+                    self?.resultLabel.text = error.localizedDescription
                 }
             }
         }
@@ -233,6 +230,26 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    private func styleTextField(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 0.5
+        textField.layer.cornerRadius = 5
+    }
+    
+    private func styleTextView(_ textView: UITextView) {
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 0.5
+        textView.layer.cornerRadius = 5
+    }
+    
+    private func styleButton(_ button: UIButton) {
+        button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = 4
     }
 }
 

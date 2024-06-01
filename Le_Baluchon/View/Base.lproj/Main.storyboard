@@ -289,6 +289,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mk-kF-XWm">
                                 <rect key="frame" x="5" y="45" width="310" height="30"/>
+                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Tig-s0-ly4"/>
                                 </constraints>
@@ -423,10 +424,10 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="homeLocationTextField" destination="f5H-eY-pAs" id="DF1-fG-QNt"/>
+                        <outlet property="homeLocationTextField" destination="f5H-eY-pAs" id="hcW-bl-79n"/>
                         <outlet property="settingsTitle" destination="2Mk-kF-XWm" id="i7b-1Z-c8K"/>
-                        <outlet property="travelLocationTextfield" destination="Qej-Gd-RsV" id="4vQ-sr-Okd"/>
-                        <outlet property="userLanguageTextField" destination="bUC-dS-Ly4" id="kuW-6j-jW7"/>
+                        <outlet property="travelLocationTextField" destination="Qej-Gd-RsV" id="aw8-YJ-U01"/>
+                        <outlet property="userLanguageTextField" destination="bUC-dS-Ly4" id="reN-3x-neh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ypt-s0-p66" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -691,10 +692,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Convert Currency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1X-8x-GgW">
-                                <rect key="frame" x="5" y="30" width="310" height="30"/>
+                                <rect key="frame" x="10" y="30" width="300" height="30"/>
                                 <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="KWE-4N-7cI"/>
+                                    <constraint firstAttribute="height" constant="30" id="OG2-Xo-ao1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="28"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -707,82 +708,123 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ele-iv-anv" userLabel="LocalView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="116.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="EK1-Uo-fTy">
-                                                <rect key="frame" x="5" y="5" width="290" height="106.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="EK1-Uo-fTy" userLabel="LocalStackView">
+                                                <rect key="frame" x="5" y="10" width="290" height="101.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNo-ea-wvz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="0.5"/>
-                                                        <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="23"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="MFv-KV-PdV" userLabel="Fromlabelimagestackview">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="61"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNo-ea-wvz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="61"/>
+                                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="23"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OCx-9H-bKg">
+                                                                <rect key="frame" x="151.5" y="0.0" width="138.5" height="61"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter amount in local currency" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QCQ-Mi-rck">
-                                                        <rect key="frame" x="0.0" y="7.5" width="290" height="42"/>
+                                                        <rect key="frame" x="0.0" y="74" width="290" height="27.5"/>
                                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="42" id="vyf-QS-sGT"/>
-                                                        </constraints>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="22"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                                                     </textField>
-                                                    <pickerView contentMode="right" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-4d-K4V">
-                                                        <rect key="frame" x="0.0" y="56.5" width="290" height="50"/>
-                                                        <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="xSU-5H-I7Z"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="n6F-1A-vPC" id="VjY-En-d3A"/>
-                                                            <outlet property="delegate" destination="n6F-1A-vPC" id="V3f-m8-uYw"/>
-                                                        </connections>
-                                                    </pickerView>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="ocu-4d-K4V" firstAttribute="top" secondItem="vNo-ea-wvz" secondAttribute="bottom" priority="999" constant="5" id="XUK-yd-2xa"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="EK1-Uo-fTy" secondAttribute="bottom" constant="5" id="4NS-m0-bit"/>
-                                            <constraint firstItem="EK1-Uo-fTy" firstAttribute="top" secondItem="Ele-iv-anv" secondAttribute="top" constant="5" id="Sm7-cy-lff"/>
-                                            <constraint firstAttribute="trailing" secondItem="EK1-Uo-fTy" secondAttribute="trailing" constant="5" id="YB5-Ax-meY"/>
-                                            <constraint firstItem="EK1-Uo-fTy" firstAttribute="leading" secondItem="Ele-iv-anv" secondAttribute="leading" constant="5" id="qbR-R3-03B"/>
+                                            <constraint firstAttribute="bottom" secondItem="EK1-Uo-fTy" secondAttribute="bottom" constant="5" id="Axw-4z-JRj"/>
+                                            <constraint firstItem="EK1-Uo-fTy" firstAttribute="top" secondItem="Ele-iv-anv" secondAttribute="top" constant="10" id="DU6-7O-PPT"/>
+                                            <constraint firstItem="EK1-Uo-fTy" firstAttribute="leading" secondItem="Ele-iv-anv" secondAttribute="leading" constant="5" id="SbQ-Yu-D3M"/>
+                                            <constraint firstAttribute="trailing" secondItem="EK1-Uo-fTy" secondAttribute="trailing" constant="5" id="zcG-dN-zqQ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9B-J2-4z3" userLabel="ConvertedView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="143.5" width="300" height="117"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-Jf-RgH" userLabel="convertedCurrency">
-                                                <rect key="frame" x="5" y="5" width="290" height="107"/>
+                                                <rect key="frame" x="5" y="10" width="290" height="102"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-bf-vW5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="40"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="StM-Wt-AHu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="55.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-bf-vW5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="55.5"/>
+                                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="25"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-lq-pdF">
+                                                                <rect key="frame" x="151.5" y="0.0" width="138.5" height="55.5"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result: $0.00" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-vk-CM4">
+                                                        <rect key="frame" x="0.0" y="68.5" width="290" height="33.5"/>
                                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="yAh-DR-2cs"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="SFPro-ExpandedThin" family="SF Pro" pointSize="25"/>
+                                                        <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="28"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-NC-H9O">
-                                                        <rect key="frame" x="0.0" y="53" width="290" height="11"/>
-                                                        <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="HE4-Jf-RgH" firstAttribute="top" secondItem="z9B-J2-4z3" secondAttribute="top" constant="10" id="25j-0A-S4D"/>
+                                            <constraint firstAttribute="bottom" secondItem="HE4-Jf-RgH" secondAttribute="bottom" constant="5" id="7QJ-tw-W4l"/>
+                                            <constraint firstAttribute="trailing" secondItem="HE4-Jf-RgH" secondAttribute="trailing" constant="5" id="RkR-7W-vAT"/>
+                                            <constraint firstItem="HE4-Jf-RgH" firstAttribute="leading" secondItem="z9B-J2-4z3" secondAttribute="leading" constant="5" id="sk9-mg-X8k"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdB-l3-i2a" userLabel="ResultView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="287.5" width="300" height="116.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ecx-QV-LpO" userLabel="CHOOSECURRENCY">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="116.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Yv7-cY-xoZ" userLabel="PICKER View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="38.5"/>
+                                                        <subviews>
+                                                            <pickerView contentMode="right" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-4d-K4V">
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="38.5"/>
+                                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="n6F-1A-vPC" id="VjY-En-d3A"/>
+                                                                    <outlet property="delegate" destination="n6F-1A-vPC" id="V3f-m8-uYw"/>
+                                                                </connections>
+                                                            </pickerView>
+                                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-NC-H9O">
+                                                                <rect key="frame" x="150" y="0.0" width="150" height="38.5"/>
+                                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="n6F-1A-vPC" id="w1c-AV-h6v"/>
+                                                                    <outlet property="delegate" destination="n6F-1A-vPC" id="vl7-0M-KSt"/>
+                                                                </connections>
+                                                            </pickerView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spc-W2-qIF" userLabel="swapCurrency">
+                                                        <rect key="frame" x="0.0" y="38.5" width="300" height="39"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="arrow.left.arrow.right" catalog="system">
+                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
                                                         <connections>
-                                                            <outlet property="dataSource" destination="n6F-1A-vPC" id="w1c-AV-h6v"/>
-                                                            <outlet property="delegate" destination="n6F-1A-vPC" id="vl7-0M-KSt"/>
+                                                            <action selector="swapButtonTapped:" destination="n6F-1A-vPC" eventType="touchUpInside" id="86l-AO-8zR"/>
                                                         </connections>
-                                                    </pickerView>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tum-Si-bYh">
-                                                        <rect key="frame" x="0.0" y="77" width="290" height="30"/>
+                                                        <rect key="frame" x="0.0" y="77.5" width="300" height="39"/>
                                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="Tu8-8B-xUK"/>
-                                                        </constraints>
                                                         <color key="tintColor" systemColor="tintColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="CONVERT">
@@ -794,34 +836,14 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstItem="HE4-Jf-RgH" firstAttribute="top" secondItem="z9B-J2-4z3" secondAttribute="top" constant="5" id="OWg-RV-TW8"/>
-                                            <constraint firstAttribute="bottom" secondItem="HE4-Jf-RgH" secondAttribute="bottom" constant="5" id="Wf0-LC-WSN"/>
-                                            <constraint firstAttribute="trailing" secondItem="HE4-Jf-RgH" secondAttribute="trailing" constant="5" id="bz5-VN-IXM"/>
-                                            <constraint firstItem="HE4-Jf-RgH" firstAttribute="leading" secondItem="z9B-J2-4z3" secondAttribute="leading" constant="5" id="qq3-iG-AUq"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdB-l3-i2a" userLabel="ResultView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="287.5" width="300" height="116.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result: $0.00" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-vk-CM4">
-                                                <rect key="frame" x="5" y="5" width="290" height="106.5"/>
-                                                <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="28"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstItem="oC4-vk-CM4" firstAttribute="leading" secondItem="YdB-l3-i2a" secondAttribute="leading" constant="5" id="VeE-h9-vV9"/>
-                                            <constraint firstAttribute="bottom" secondItem="oC4-vk-CM4" secondAttribute="bottom" constant="5" id="Yfh-8g-xI8"/>
-                                            <constraint firstItem="oC4-vk-CM4" firstAttribute="top" secondItem="YdB-l3-i2a" secondAttribute="top" constant="5" id="Yky-bB-J0r"/>
-                                            <constraint firstAttribute="trailing" secondItem="oC4-vk-CM4" secondAttribute="trailing" constant="5" id="v4u-ZV-xNr"/>
+                                            <constraint firstItem="Ecx-QV-LpO" firstAttribute="top" secondItem="YdB-l3-i2a" secondAttribute="top" id="Ea8-93-esc"/>
+                                            <constraint firstItem="Ecx-QV-LpO" firstAttribute="leading" secondItem="YdB-l3-i2a" secondAttribute="leading" id="LtW-Cl-AYV"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ecx-QV-LpO" secondAttribute="bottom" id="cZR-ua-HpL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ecx-QV-LpO" secondAttribute="trailing" id="oan-j0-R3h"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -833,13 +855,13 @@
                         <color key="tintColor" systemColor="tintColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="74s-2U-5Gp" firstAttribute="bottom" secondItem="ckP-1I-wLy" secondAttribute="bottom" constant="35" id="POY-ps-JBi"/>
-                            <constraint firstItem="74s-2U-5Gp" firstAttribute="trailing" secondItem="n1X-8x-GgW" secondAttribute="trailing" constant="5" id="SnY-3n-MYZ"/>
-                            <constraint firstItem="ckP-1I-wLy" firstAttribute="top" secondItem="n1X-8x-GgW" secondAttribute="bottom" constant="20" id="iCZ-B4-4Mk"/>
-                            <constraint firstItem="n1X-8x-GgW" firstAttribute="leading" secondItem="74s-2U-5Gp" secondAttribute="leading" constant="5" id="o5a-5S-Wrn"/>
-                            <constraint firstItem="n1X-8x-GgW" firstAttribute="top" secondItem="74s-2U-5Gp" secondAttribute="top" constant="10" id="sBl-Sj-Mrk"/>
-                            <constraint firstItem="74s-2U-5Gp" firstAttribute="trailing" secondItem="ckP-1I-wLy" secondAttribute="trailing" constant="10" id="sL6-22-q9Y"/>
-                            <constraint firstItem="ckP-1I-wLy" firstAttribute="leading" secondItem="74s-2U-5Gp" secondAttribute="leading" constant="10" id="xZm-qx-GyR"/>
+                            <constraint firstItem="ckP-1I-wLy" firstAttribute="top" secondItem="n1X-8x-GgW" secondAttribute="bottom" constant="20" id="4XQ-jv-dsa"/>
+                            <constraint firstItem="74s-2U-5Gp" firstAttribute="bottom" secondItem="ckP-1I-wLy" secondAttribute="bottom" constant="35" id="70A-f6-lPD"/>
+                            <constraint firstItem="ckP-1I-wLy" firstAttribute="leading" secondItem="74s-2U-5Gp" secondAttribute="leading" constant="10" id="L2T-Uq-eB1"/>
+                            <constraint firstItem="n1X-8x-GgW" firstAttribute="top" secondItem="74s-2U-5Gp" secondAttribute="top" constant="10" id="ML9-pV-LDb"/>
+                            <constraint firstItem="74s-2U-5Gp" firstAttribute="trailing" secondItem="n1X-8x-GgW" secondAttribute="trailing" constant="10" id="aDi-0F-ryd"/>
+                            <constraint firstItem="74s-2U-5Gp" firstAttribute="trailing" secondItem="ckP-1I-wLy" secondAttribute="trailing" constant="10" id="h5t-at-MSu"/>
+                            <constraint firstItem="n1X-8x-GgW" firstAttribute="leading" secondItem="74s-2U-5Gp" secondAttribute="leading" constant="10" id="myM-6c-Tif"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="SGX-TB-Ki1" appends="YES" id="rnV-xo-VNI"/>
@@ -853,9 +875,12 @@
                         <outlet property="amountTextField" destination="QCQ-Mi-rck" id="krV-cE-pzT"/>
                         <outlet property="convertCurrencyLabel" destination="n1X-8x-GgW" id="NXx-Wh-7Wa"/>
                         <outlet property="convertbutton" destination="Tum-Si-bYh" id="OQ0-Hw-RxQ"/>
+                        <outlet property="fromCurrencyFlagImageView" destination="OCx-9H-bKg" id="DOU-Q0-Ytg"/>
                         <outlet property="fromCurrencyPicker" destination="ocu-4d-K4V" id="ge0-kn-Zc2"/>
                         <outlet property="fromLabel" destination="vNo-ea-wvz" id="ULc-MQ-5Dp"/>
                         <outlet property="resultLabel" destination="oC4-vk-CM4" id="pdu-Pj-B2h"/>
+                        <outlet property="swapCurrencyButton" destination="spc-W2-qIF" id="Gd9-Jq-akX"/>
+                        <outlet property="toCurrencyFlagImageView" destination="4d9-lq-pdF" id="vYM-B0-4wL"/>
                         <outlet property="toCurrencyPicker" destination="e9R-NC-H9O" id="R26-ub-us7"/>
                         <outlet property="toLabel" destination="Vjr-bf-vW5" id="a2O-6x-jOJ"/>
                     </connections>

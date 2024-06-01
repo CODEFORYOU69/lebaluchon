@@ -1,0 +1,114 @@
+
+/* Class = "UITabBarItem"; title = "settings"; ObjectID = "1kO-6j-KgI"; */
+"1kO-6j-KgI.title" = "settings";
+
+/* Class = "UILabel"; text = "SETTINGS"; ObjectID = "2Mk-kF-XWm"; */
+"2Mk-kF-XWm.text" = "SETTINGS";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6La-64-uOc"; */
+"6La-64-uOc.text" = "Label";
+
+/* Class = "UILabel"; text = "Translated text:"; ObjectID = "9Rn-bh-Llo"; */
+"9Rn-bh-Llo.text" = "Translated text:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9ee-sV-sIu"; */
+"9ee-sV-sIu.text" = "Label";
+
+/* Class = "UILabel"; text = ": Temperature"; ObjectID = "EMD-VX-KbB"; */
+"EMD-VX-KbB.text" = ": Temperature";
+
+/* Class = "UILabel"; text = ":Temperature"; ObjectID = "H4e-jL-G6J"; */
+"H4e-jL-G6J.text" = ":Temperature";
+
+/* Class = "UIButton"; normalTitle = "TRANSLATE"; ObjectID = "II0-1g-EXC"; */
+"II0-1g-EXC.normalTitle" = "TRANSLATE";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "KMN-qt-gq7"; */
+"KMN-qt-gq7.text" = "Label";
+
+/* Class = "UILabel"; text = "language translated"; ObjectID = "M62-x1-95r"; */
+"M62-x1-95r.text" = "language translated";
+
+/* Class = "UIViewController"; title = "Translate"; ObjectID = "O7U-Lk-ud5"; */
+"O7U-Lk-ud5.title" = "Translate";
+
+/* Class = "UITabBarItem"; title = "Weather"; ObjectID = "Pxx-jP-IWB"; */
+"Pxx-jP-IWB.title" = "Weather";
+
+/* Class = "UITextField"; placeholder = "Enter amount in local currency"; ObjectID = "QCQ-Mi-rck"; */
+"QCQ-Mi-rck.placeholder" = "Enter amount in local currency";
+
+/* Class = "UILabel"; text = "Forecast"; ObjectID = "Qwi-TL-7us"; */
+"Qwi-TL-7us.text" = "Forecast";
+
+/* Class = "UILabel"; text = "TRANSLATE"; ObjectID = "RO4-qS-qis"; */
+"RO4-qS-qis.text" = "TRANSLATE";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "T4N-r9-G4j"; */
+"T4N-r9-G4j.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "CONVERT"; ObjectID = "Tum-Si-bYh"; */
+"Tum-Si-bYh.configuration.title" = "CONVERT";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Tum-Si-bYh"; */
+"Tum-Si-bYh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "URz-ME-69R"; */
+"URz-ME-69R.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "VT8-1D-vvd"; */
+"VT8-1D-vvd.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "To:"; ObjectID = "Vjr-bf-vW5"; */
+"Vjr-bf-vW5.text" = "To:";
+
+/* Class = "UITabBarItem"; title = "Change"; ObjectID = "YGq-yt-2Tz"; */
+"YGq-yt-2Tz.title" = "Change";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ae1-e7-iA4"; */
+"ae1-e7-iA4.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "translate"; ObjectID = "bX9-I6-eia"; */
+"bX9-I6-eia.title" = "translate";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dF3-EK-Xn5"; */
+"dF3-EK-Xn5.text" = "Label";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "g8Z-tP-7Tw"; */
+"g8Z-tP-7Tw.text" = "Language";
+
+/* Class = "UILabel"; text = "Original LANGUAGE"; ObjectID = "hY9-qg-ozi"; */
+"hY9-qg-ozi.text" = "Original LANGUAGE";
+
+/* Class = "UILabel"; text = "Home Location"; ObjectID = "i7g-T3-DLa"; */
+"i7g-T3-DLa.text" = "Home Location";
+
+/* Class = "UILabel"; text = ": Condition"; ObjectID = "iSO-ub-ped"; */
+"iSO-ub-ped.text" = ": Condition";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "myy-JJ-Wua"; */
+"myy-JJ-Wua.text" = "Label";
+
+/* Class = "UILabel"; text = "Convert Currency"; ObjectID = "n1X-8x-GgW"; */
+"n1X-8x-GgW.text" = "Convert Currency";
+
+/* Class = "UIViewController"; title = "Currency"; ObjectID = "n6F-1A-vPC"; */
+"n6F-1A-vPC.title" = "Currency";
+
+/* Class = "UILabel"; text = "Result: $0.00"; ObjectID = "oC4-vk-CM4"; */
+"oC4-vk-CM4.text" = "Result: $0.00";
+
+/* Class = "UIViewController"; title = "Forecast"; ObjectID = "pwI-Ft-qzz"; */
+"pwI-Ft-qzz.title" = "Forecast";
+
+/* Class = "UILabel"; text = "Original text:"; ObjectID = "rIe-GX-75c"; */
+"rIe-GX-75c.text" = "Original text:";
+
+/* Class = "UILabel"; text = "Travel Location"; ObjectID = "uV1-it-VC8"; */
+"uV1-it-VC8.text" = "Travel Location";
+
+/* Class = "UILabel"; text = "From:"; ObjectID = "vNo-ea-wvz"; */
+"vNo-ea-wvz.text" = "From:";
+
+/* Class = "UILabel"; text = ": Condition"; ObjectID = "yIb-SU-aR3"; */
+"yIb-SU-aR3.text" = ": Condition";

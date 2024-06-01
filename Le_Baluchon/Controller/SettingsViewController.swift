@@ -10,10 +10,9 @@ import UIKit
 class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var userLanguageTextField: UITextField!
-    
-    @IBOutlet var dissMiss: UITapGestureRecognizer!
     @IBOutlet weak var homeLocationTextField: UITextField!
-    @IBOutlet weak var travelLocationTextfield: UITextField!
+    @IBOutlet weak var travelLocationTextField: UITextField!
+    
     let languages = ["en", "fr", "es", "de", "it", "pt", "zh", "ja"]
     let languageNames = [
         "en": "English",
@@ -27,30 +26,25 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     ]
     
     let languagePicker = UIPickerView()
-    
+    let settingsService = SettingsService()
+
     @IBOutlet weak var settingsTitle: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLanguagePicker()
         
-        if let userLanguage = UserDefaults.standard.string(forKey: "userLanguage") {
-            userLanguageTextField.text = languageNames[userLanguage]
-        } else {
-            userLanguageTextField.text = languageNames["en"]
-        }
-        
-        homeLocationTextField.text = UserDefaults.standard.string(forKey: "homeLocation")
-        travelLocationTextfield.text = UserDefaults.standard.string(forKey: "travelLocation")
+        userLanguageTextField.text = languageNames[settingsService.getUserLanguage()]
+        homeLocationTextField.text = settingsService.getHomeLocation()
+        travelLocationTextField.text = settingsService.getTravelLocation()
     }
     
     @IBAction func homeLocationTextFieldEditingDidEnd(_ sender: UITextField) {
-        UserDefaults.standard.set(sender.text, forKey: "homeLocation")
-        NotificationCenter.default.post(name: .homeLocationChanged, object: nil)
+        settingsService.setHomeLocation(sender.text ?? "")
     }
     
     @IBAction func travelLocationTextFieldEditingDidEnd(_ sender: UITextField) {
-        UserDefaults.standard.set(sender.text, forKey: "travelLocation")
-        NotificationCenter.default.post(name: .travelLocationChanged, object: nil)
+        settingsService.setTravelLocation(sender.text ?? "")
     }
     
     func setupLanguagePicker() {
@@ -84,10 +78,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedLanguage = languages[row]
         userLanguageTextField.text = languageNames[selectedLanguage]
-        
-        UserDefaults.standard.set(selectedLanguage, forKey: "userLanguage")
-        NotificationCenter.default.post(name: .userLanguageChanged, object: nil)
-        
+        settingsService.setUserLanguage(selectedLanguage)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -97,17 +88,13 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             languagePicker.selectRow(0, inComponent: 0, animated: false)
         }
     }
+    
     private func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+    
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-}
-// Notification names
-extension Notification.Name {
-    static let homeLocationChanged = Notification.Name("homeLocationChanged")
-    static let travelLocationChanged = Notification.Name("travelLocationChanged")
-    static let userLanguageChanged = Notification.Name("userLanguageChanged")
 }

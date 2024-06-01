@@ -42,8 +42,6 @@ class ForecastViewController: UIViewController {
         homeCityLabelCond.font = UIFont(name: "SFPro-CompressedMedium", size: 20)
         travelCityLabelCond.font = UIFont(name: "SFPro-CompressedMedium", size: 20)
         
-        styleLabel(forecastTitle)
-        
         fetchWeather(for: travelCity, temperatureLabel: newYorkTemperatureLabel, conditionLabel: newYorkConditionLabel, animationView: newYorkAnimationView)
         fetchWeather(for: localCity, temperatureLabel: localTemperatureLabel, conditionLabel: localConditionLabel, animationView: localAnimationView)
     }
@@ -66,15 +64,15 @@ class ForecastViewController: UIViewController {
         fetchWeather(for: localCity, temperatureLabel: localTemperatureLabel, conditionLabel: localConditionLabel, animationView: localAnimationView)
     }
     
-    
     func fetchWeather(for city: String, temperatureLabel: UILabel, conditionLabel: UILabel, animationView: LottieAnimationView) {
-        WeatherService.fetchWeather(for: city) { response, error in
+        WeatherService.fetchWeather(for: city) { result in
             DispatchQueue.main.async {
-                if let response = response {
+                switch result {
+                case .success(let response):
                     temperatureLabel.text = "\(response.main.temp)°C"
                     conditionLabel.text = response.weather.first?.description.capitalized
                     self.setAnimation(for: response.weather.first?.description ?? "", in: animationView)
-                } else if let error = error {
+                case .failure(let error):
                     print("Failed to fetch weather data: \(error.localizedDescription)")
                 }
             }
@@ -86,18 +84,16 @@ class ForecastViewController: UIViewController {
         
         switch condition.lowercased() {
         case "clear sky":
-            animationName = "snowy"
+            animationName = "sunny"
         case "few clouds", "scattered clouds", "broken clouds", "overcast clouds":
             animationName = "cloudy"
         case "shower rain", "rain":
             animationName = "rainy"
         case "thunderstorm":
             animationName = "stormy"
-        case "thunderstorm":
-            animationName = "rainy"
         case "snow":
             animationName = "snowy"
-        case "mist", "light intensity drizzle":
+        case "mist", "light intensity drizzle","drizzle","fog":
             animationName = "misty"
         default:
             animationName = "default"

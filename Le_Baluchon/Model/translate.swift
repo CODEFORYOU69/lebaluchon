@@ -7,7 +7,6 @@
 
 import Foundation
 
-// Déclaration consolidée des structures
 struct TranslationResponse: Codable {
     let data: TranslationData
 }
@@ -32,4 +31,16 @@ struct Detection: Codable {
     let language: String
     let isReliable: Bool
     let confidence: Float
+}
+
+enum TranslationError: Error {
+    case noData
+    case decodingError
+    case apiError(String)
+}
+
+enum DetectionError: Error {
+    case noData
+    case decodingError
+    case apiError(String)
 }
