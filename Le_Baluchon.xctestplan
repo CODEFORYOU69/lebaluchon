@@ -23,15 +23,6 @@
         "identifier" : "3E7DCFA42BECFD3B00E0889F",
         "name" : "Le_BaluchonTests"
       }
-    },
-    {
-      "enabled" : false,
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Le_Baluchon.xcodeproj",
-        "identifier" : "3E7DCFAE2BECFD3B00E0889F",
-        "name" : "Le_BaluchonUITests"
-      }
     }
   ],
   "version" : 1

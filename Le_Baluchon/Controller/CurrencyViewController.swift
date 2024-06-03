@@ -39,7 +39,6 @@ class CurrencyViewController: UIViewController {
         fetchExchangeRates()
         amountTextField.textColor = UIColor.black
         amountTextField.layer.borderColor = UIColor.darkGray.cgColor
-        toLabel.layer.cornerRadius = 10
         view.bringSubviewToFront(toCurrencyFlagImageView)
         view.bringSubviewToFront(fromCurrencyFlagImageView)
         
@@ -122,6 +121,7 @@ class CurrencyViewController: UIViewController {
             label?.layer.shadowOpacity = 0.7
             label?.layer.shadowOffset = CGSize(width: 1, height: 1)
             label?.layer.shadowRadius = 2
+            
         }
     }
     

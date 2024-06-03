@@ -7,32 +7,7 @@
 
 import UIKit
 
-class CardView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
-    }
-    
-    private func setupView() {
-        // Ajout des coins arrondis
-        self.layer.cornerRadius = 10
-        
-        // Ajout d'une ombre
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.layer.shadowRadius = 4
-        
-        // Ajout d'une bordure optionnelle
-        self.layer.borderColor = UIColor.lightGray.cgColor
-        self.layer.borderWidth = 0.5
-    }
-}
+
 
 class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -67,6 +42,17 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadUserLanguage()
+        updateLanguageDisplay()
+    }
+    
+    // Configuration de l'interface utilisateur
+    private func setupUI() {
         setupTapGesture()
         setupLanguagePicker()
         loadUserLanguage()
@@ -76,28 +62,19 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         styleTextField(targetLanguageTextField)
         styleTextView(translatedText)
         styleTextView(originTranslate)
-        
         styleButton(translateButton)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadUserLanguage()
-        updateLanguageDisplay()
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
-    func loadUserLanguage() {
-        if let userLanguage = UserDefaults.standard.string(forKey: "userLanguage") {
-            sourceLanguage = userLanguage
-            sourceLanguageTextField.text = languageNames[userLanguage]
-        } else {
-            // Définir une langue par défaut si aucune langue n'est définie
-            sourceLanguage = "en"
-            sourceLanguageTextField.text = languageNames["en"]
-        }
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
-    func setupLanguagePicker() {
+    private func setupLanguagePicker() {
         languagePicker.delegate = self
         languagePicker.dataSource = self
         sourceLanguageTextField.inputView = languagePicker
@@ -113,87 +90,29 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         targetLanguageTextField.inputAccessoryView = toolbar
     }
     
-    @objc func doneButtonTapped() {
+    @objc private func doneButtonTapped() {
         activeTextField?.resignFirstResponder()
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return languages.count
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return translateLanguageName(language: languages[row], to: sourceLanguage)
-    }
-    
-    func translateLanguageName(language: String, to userLanguage: String) -> String {
-        let translations = [
-            "en": ["fr": "Anglais", "es": "Inglés", "de": "Englisch", "it": "Inglese", "pt": "Inglês", "zh": "英语", "ja": "英語"],
-            "fr": ["en": "Français", "es": "Francés", "de": "Französisch", "it": "Francese", "pt": "Francês", "zh": "法语", "ja": "フランス語"],
-            "es": ["en": "Español", "fr": "Espagnol", "de": "Spanisch", "it": "Spagnolo", "pt": "Espanhol", "zh": "西班牙语", "ja": "スペイン語"],
-            "de": ["en": "Deutsch", "fr": "Allemand", "es": "Alemán", "it": "Tedesco", "pt": "Alemão", "zh": "德语", "ja": "ドイツ語"],
-        ]
-        return translations[language]?[userLanguage] ?? languageNames[language] ?? language
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedLanguage = languages[row]
-        if activeTextField == sourceLanguageTextField {
-            sourceLanguage = selectedLanguage
-            sourceLanguageTextField.text = translateLanguageName(language: selectedLanguage, to: sourceLanguage)
-        } else if activeTextField == targetLanguageTextField {
-            targetLanguage = selectedLanguage
-            targetLanguageTextField.text = translateLanguageName(language: selectedLanguage, to: sourceLanguage)
-        }
-        updateLanguageDisplay()
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
-        
-        if let currentLanguage = textField.text, let index = languages.firstIndex(of: currentLanguage) {
-            languagePicker.selectRow(index, inComponent: 0, animated: false)
+    private func loadUserLanguage() {
+        if let userLanguage = UserDefaults.standard.string(forKey: "userLanguage") {
+            sourceLanguage = userLanguage
+            sourceLanguageTextField.text = languageNames[userLanguage]
+        } else {
+            sourceLanguage = "en"
+            sourceLanguageTextField.text = languageNames["en"]
         }
     }
     
-    @IBAction func swapLanguagesButtonTapped(_ sender: UIButton) {
-        print("Bouton de changement de langue appuyé")
-        print("Langue source avant échange : \(sourceLanguage)")
-        print("Langue cible avant échange : \(targetLanguage)")
-        
+    @IBAction private func swapLanguagesButtonTapped(_ sender: UIButton) {
         (sourceLanguage, targetLanguage) = (targetLanguage, sourceLanguage)
-        
-        print("Langue source après échange : \(sourceLanguage)")
-        print("Langue cible après échange : \(targetLanguage)")
-        
         updateLanguageDisplay()
-        
-        print("Texte original avant échange : \(originTranslate.text ?? "")")
-        print("Texte traduit avant échange : \(translatedText.text ?? "")")
-        
         (originTranslate.text, translatedText.text) = (translatedText.text, originTranslate.text)
-        
-        print("Texte original après échange : \(originTranslate.text ?? "")")
-        print("Texte traduit après échange : \(translatedText.text ?? "")")
     }
     
-    func updateLanguageDisplay() {
-        sourceLanguageLabel.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
-        targetLanguageLabel.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
-        sourceLanguageTextField.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
-        targetLanguageTextField.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
-        
-        print("Affichage des langues mis à jour :")
-        print("Label de la langue source : \(sourceLanguageLabel.text ?? "")")
-        print("Label de la langue cible : \(targetLanguageLabel.text ?? "")")
-    }
-    
-    @IBAction func translateButtonAction(_ sender: UIButton) {
+    @IBAction private func translateButtonAction(_ sender: UIButton) {
         guard let text = originTranslate.text, !text.isEmpty else {
-            resultLabel.text = "Input text is empty"
+            resultLabel.text = "Le texte d'entrée est vide"
             return
         }
         
@@ -223,13 +142,49 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
-    private func setupTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+    private func updateLanguageDisplay() {
+        sourceLanguageLabel.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
+        targetLanguageLabel.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
+        sourceLanguageTextField.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
+        targetLanguageTextField.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    private func translateLanguageName(language: String, to userLanguage: String) -> String {
+        let translations = [
+            "en": ["fr": "Anglais", "es": "Inglés", "de": "Englisch", "it": "Inglese", "pt": "Inglês", "zh": "英语", "ja": "英語"],
+            "fr": ["en": "Français", "es": "Francés", "de": "Französisch", "it": "Francese", "pt": "Francês", "zh": "法语", "ja": "フランス語"],
+            "es": ["en": "Español", "fr": "Espagnol", "de": "Spanisch", "it": "Spagnolo", "pt": "Espanhol", "zh": "西班牙语", "ja": "スペイン語"],
+            "de": ["en": "Deutsch", "fr": "Allemand", "es": "Alemán", "it": "Tedesco", "pt": "Alemão", "zh": "德语", "ja": "ドイツ語"],
+        ]
+        return translations[language]?[userLanguage] ?? languageNames[language] ?? language
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return languages.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedLanguage = languages[row]
+        if activeTextField == sourceLanguageTextField {
+            sourceLanguage = selectedLanguage
+            sourceLanguageTextField.text = translateLanguageName(language: selectedLanguage, to: sourceLanguage)
+        } else if activeTextField == targetLanguageTextField {
+            targetLanguage = selectedLanguage
+            targetLanguageTextField.text = translateLanguageName(language: selectedLanguage, to: sourceLanguage)
+        }
+        updateLanguageDisplay()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        
+        if let currentLanguage = textField.text, let index = languages.firstIndex(of: currentLanguage) {
+            languagePicker.selectRow(index, inComponent: 0, animated: false)
+        }
     }
     
     private func styleTextField(_ textField: UITextField) {
@@ -252,4 +207,3 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         button.layer.shadowRadius = 4
     }
 }
-

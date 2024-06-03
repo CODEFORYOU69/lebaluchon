@@ -44,7 +44,6 @@ class CurrencyConversionService {
         self.urlSession = urlSession
     }
     
-
     func fetchExchangeRates(for currencyCodes: [String], completion: @escaping (Result<CurrencyMap, Error>) -> Void) {
         if let lastUpdate = userDefaults.object(forKey: lastUpdateKey) as? Date,
            let storedData = userDefaults.data(forKey: exchangeRatesKey),

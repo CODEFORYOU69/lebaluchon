@@ -13,6 +13,7 @@
 		3E00FE5D2C0256B800E53745 /* SettingsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5C2C0256B800E53745 /* SettingsServiceTests.swift */; };
 		3E00FE5F2C02591600E53745 /* TestUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5E2C02591600E53745 /* TestUrl.swift */; };
 		3E00FE612C025A6B00E53745 /* protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE602C025A6B00E53745 /* protocol.swift */; };
+		3E00FE6A2C0BE8B800E53745 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE692C0BE8B800E53745 /* CardView.swift */; };
 		3E10E2D42BF2D3420006E483 /* translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10E2D32BF2D3420006E483 /* translate.swift */; };
 		3E747C1B2BF2DBA30061E19E /* translateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E747C1A2BF2DBA30061E19E /* translateService.swift */; };
 		3E7DCF932BECFD3A00E0889F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */; };
@@ -29,9 +30,9 @@
 		3EC7C8992BF6D17B002928D1 /* CurrencyConversionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7C8982BF6D17B002928D1 /* CurrencyConversionServiceTests.swift */; };
 		3EC7C89B2BF6D23E002928D1 /* TranslationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7C89A2BF6D23E002928D1 /* TranslationServiceTests.swift */; };
 		3EC7C89D2BF6D306002928D1 /* WeatherServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7C89C2BF6D306002928D1 /* WeatherServiceTests.swift */; };
-		3EC7C8AD2BF763B4002928D1 /* MockWeatherResponse.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC7C8A52BF6D4D0002928D1 /* MockWeatherResponse.json */; };
-		3EC7C8AF2BF763BC002928D1 /* MockTranslationResponse.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC7C89F2BF6D3FC002928D1 /* MockTranslationResponse.json */; };
-		3EC7C8B12BF764A6002928D1 /* MockDetectionResponse.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC7C8B02BF7645C002928D1 /* MockDetectionResponse.json */; };
+		3EC7C8AD2BF763B4002928D1 /* MockWeatherResponse.json in Copy Files */ = {isa = PBXBuildFile; fileRef = 3EC7C8A52BF6D4D0002928D1 /* MockWeatherResponse.json */; };
+		3EC7C8AF2BF763BC002928D1 /* MockTranslationResponse.json in Copy Files */ = {isa = PBXBuildFile; fileRef = 3EC7C89F2BF6D3FC002928D1 /* MockTranslationResponse.json */; };
+		3EC7C8B12BF764A6002928D1 /* MockDetectionResponse.json in Copy Files */ = {isa = PBXBuildFile; fileRef = 3EC7C8B02BF7645C002928D1 /* MockDetectionResponse.json */; };
 		3EC7C8B82C002398002928D1 /* style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7C8B72C002398002928D1 /* style.swift */; };
 		3EF158902BF588DF0012D8E1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1588F2BF588DF0012D8E1 /* SettingsViewController.swift */; };
 		3EF158932BF696F80012D8E1 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF158922BF696F80012D8E1 /* WeatherService.swift */; };
@@ -57,16 +58,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3EC7C8AC2BF763A0002928D1 /* CopyFiles */ = {
+		3EC7C8AC2BF763A0002928D1 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				3EC7C8AD2BF763B4002928D1 /* MockWeatherResponse.json in CopyFiles */,
-				3EC7C8AF2BF763BC002928D1 /* MockTranslationResponse.json in CopyFiles */,
-				3EC7C8B12BF764A6002928D1 /* MockDetectionResponse.json in CopyFiles */,
+				3EC7C8AD2BF763B4002928D1 /* MockWeatherResponse.json in Copy Files */,
+				3EC7C8AF2BF763BC002928D1 /* MockTranslationResponse.json in Copy Files */,
+				3EC7C8B12BF764A6002928D1 /* MockDetectionResponse.json in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -79,6 +81,7 @@
 		3E00FE602C025A6B00E53745 /* protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocol.swift; sourceTree = "<group>"; };
 		3E00FE632C025DF500E53745 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3E00FE662C09419B00E53745 /* Le_Baluchon.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Le_Baluchon.xctestplan; sourceTree = "<group>"; };
+		3E00FE692C0BE8B800E53745 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3E10E2D32BF2D3420006E483 /* translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translate.swift; sourceTree = "<group>"; };
 		3E747C1A2BF2DBA30061E19E /* translateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translateService.swift; sourceTree = "<group>"; };
 		3E7DCF8F2BECFD3A00E0889F /* Le_Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Le_Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +147,21 @@
 			path = Mockup;
 			sourceTree = "<group>";
 		};
+		3E00FE6B2C0D4E1800E53745 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3E7DCF9B2BECFD3B00E0889F /* Assets.xcassets */,
+				3EF158A82BF6B6DE0012D8E1 /* misty.json */,
+				3EF158B32BF6BFD60012D8E1 /* default.json */,
+				3EF158A92BF6B6DE0012D8E1 /* cloudy.json */,
+				3EF158A72BF6B6DE0012D8E1 /* rainy.json */,
+				3EF158A52BF6B6DE0012D8E1 /* sunny.json */,
+				3EF158A62BF6B6DE0012D8E1 /* stormy.json */,
+				3EF158A42BF6B6DE0012D8E1 /* snowy.json */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		3E7DCF862BECFD3A00E0889F = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +169,6 @@
 				3E7DCF912BECFD3A00E0889F /* Le_Baluchon */,
 				3E7DCFA82BECFD3B00E0889F /* Le_BaluchonTests */,
 				3E7DCF902BECFD3A00E0889F /* Products */,
-				3EC7C8B22BFF7A5D002928D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,23 +184,11 @@
 		3E7DCF912BECFD3A00E0889F /* Le_Baluchon */ = {
 			isa = PBXGroup;
 			children = (
-				3E00FE522C023FD000E53745 /* Mockup */,
-				3EC7C8B92C0023D3002928D1 /* style */,
 				3EF1589C2BF6ABD10012D8E1 /* fonts */,
-				3E7DD0152BF1672900E0889F /* Services */,
 				3E7DCFC42BED053000E0889F /* Controller */,
 				3E7DCFC32BED052100E0889F /* View */,
 				3E7DCFC22BED051600E0889F /* Model */,
-				3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */,
-				3E7DCF942BECFD3A00E0889F /* SceneDelegate.swift */,
-				3E7DCF9B2BECFD3B00E0889F /* Assets.xcassets */,
-				3EF158A42BF6B6DE0012D8E1 /* snowy.json */,
-				3EF158B32BF6BFD60012D8E1 /* default.json */,
-				3EF158A92BF6B6DE0012D8E1 /* cloudy.json */,
-				3EF158A72BF6B6DE0012D8E1 /* rainy.json */,
-				3EF158A52BF6B6DE0012D8E1 /* sunny.json */,
-				3EF158A62BF6B6DE0012D8E1 /* stormy.json */,
-				3EF158A82BF6B6DE0012D8E1 /* misty.json */,
+				3E00FE6B2C0D4E1800E53745 /* utils */,
 				3E7DCFA02BECFD3B00E0889F /* Info.plist */,
 			);
 			path = Le_Baluchon;
@@ -192,6 +197,7 @@
 		3E7DCFA82BECFD3B00E0889F /* Le_BaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
+				3E00FE522C023FD000E53745 /* Mockup */,
 				3EC7C89E2BF6D3AF002928D1 /* MockData */,
 				3E7DCFA92BECFD3B00E0889F /* Le_BaluchonTests.swift */,
 				3EC7C8962BF6D126002928D1 /* CurrencyTests.swift */,
@@ -206,6 +212,7 @@
 		3E7DCFC22BED051600E0889F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3E7DD0152BF1672900E0889F /* Services */,
 				3E7DD0132BF1670B00E0889F /* currency.swift */,
 				3E10E2D32BF2D3420006E483 /* translate.swift */,
 			);
@@ -215,6 +222,9 @@
 		3E7DCFC32BED052100E0889F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3E7DCF942BECFD3A00E0889F /* SceneDelegate.swift */,
+				3E7DCF922BECFD3A00E0889F /* AppDelegate.swift */,
+				3EC7C8B92C0023D3002928D1 /* style */,
 				3E7DCF982BECFD3A00E0889F /* Main.storyboard */,
 				3E7DCF9D2BECFD3B00E0889F /* LaunchScreen.storyboard */,
 			);
@@ -228,6 +238,7 @@
 				3E7DCFC72BED0F0C00E0889F /* TranslateViewController.swift */,
 				3E7DCFC92BED0F2200E0889F /* ForecastViewController.swift */,
 				3EF1588F2BF588DF0012D8E1 /* SettingsViewController.swift */,
+				3E00FE692C0BE8B800E53745 /* CardView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,13 +262,6 @@
 				3EC7C8B02BF7645C002928D1 /* MockDetectionResponse.json */,
 			);
 			path = MockData;
-			sourceTree = "<group>";
-		};
-		3EC7C8B22BFF7A5D002928D1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3EC7C8B92C0023D3002928D1 /* style */ = {
@@ -305,7 +309,7 @@
 			buildPhases = (
 				3E7DCFA12BECFD3B00E0889F /* Sources */,
 				3E7DCFA22BECFD3B00E0889F /* Frameworks */,
-				3EC7C8AC2BF763A0002928D1 /* CopyFiles */,
+				3EC7C8AC2BF763A0002928D1 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -402,6 +406,7 @@
 				3E00FE542C023FF100E53745 /* MockupTest.swift in Sources */,
 				3E747C1B2BF2DBA30061E19E /* translateService.swift in Sources */,
 				3E00FE5B2C024C8B00E53745 /* SettingsService.swift in Sources */,
+				3E00FE6A2C0BE8B800E53745 /* CardView.swift in Sources */,
 				3E7DCF952BECFD3A00E0889F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
