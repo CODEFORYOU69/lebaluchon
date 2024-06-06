@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var translatedText: UITextView!
@@ -25,30 +23,38 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var sourceLanguage = "en"
     var targetLanguage = "fr"
     
-    let languages = ["en", "fr", "es", "de", "it", "pt", "zh", "ja"]
-    let languageNames = [
-        "en": "English",
-        "fr": "Français",
-        "es": "Español",
-        "de": "Deutsch",
-        "it": "Italiano",
-        "pt": "Português",
-        "zh": "中文",
-        "ja": "日本語"
-    ]
+    var languages: [String: String] = [:] // Dictionary to store language codes and names
+    var languageCodes: [String] = [] // Array to store the language codes for pickerView
+    var filteredLanguageCodes: [String] = [] // Array to store filtered language codes
     
     let languagePicker = UIPickerView()
     var activeTextField: UITextField?
     
+    var translationService: TranslationService!
+    var settingsService: SettingsService!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Initialize settingsService before any usage
+        settingsService = SettingsService()
+        
         setupUI()
+        translationService = TranslationService()
+        fetchLanguages()
+        
+        // Observe changes in user language settings
+        NotificationCenter.default.addObserver(self, selector: #selector(userLanguageChanged), name: .userLanguageChanged, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadUserLanguage()
         updateLanguageDisplay()
+    }
+    
+    @objc private func userLanguageChanged() {
+        fetchLanguages()
     }
     
     // Configuration de l'interface utilisateur
@@ -95,13 +101,9 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     private func loadUserLanguage() {
-        if let userLanguage = UserDefaults.standard.string(forKey: "userLanguage") {
-            sourceLanguage = userLanguage
-            sourceLanguageTextField.text = languageNames[userLanguage]
-        } else {
-            sourceLanguage = "en"
-            sourceLanguageTextField.text = languageNames["en"]
-        }
+        let userLanguage = settingsService.getUserLanguage()
+        sourceLanguage = userLanguage
+        sourceLanguageTextField.text = languages[userLanguage] ?? ""
     }
     
     @IBAction private func swapLanguagesButtonTapped(_ sender: UIButton) {
@@ -116,15 +118,15 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             return
         }
         
-        TranslationService.detectLanguage(for: text) { [weak self] result in
+        translationService.detectLanguage(for: text) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let detectedLanguage):
                     self?.sourceLanguage = detectedLanguage
-                    self?.sourceLanguageTextField.text = self?.translateLanguageName(language: detectedLanguage, to: detectedLanguage)
+                    self?.sourceLanguageTextField.text = self?.languages[detectedLanguage] ?? detectedLanguage
                     self?.updateLanguageDisplay()
                     
-                    TranslationService.translate(text: text, from: detectedLanguage, to: self?.targetLanguage ?? "en") { result in
+                    self?.translationService.translate(text: text, from: detectedLanguage, to: self?.targetLanguage ?? "en") { result in
                         DispatchQueue.main.async {
                             switch result {
                             case .success(let translatedText):
@@ -143,24 +145,31 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     private func updateLanguageDisplay() {
-        sourceLanguageLabel.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
-        targetLanguageLabel.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
-        sourceLanguageTextField.text = translateLanguageName(language: sourceLanguage, to: sourceLanguage)
-        targetLanguageTextField.text = translateLanguageName(language: targetLanguage, to: sourceLanguage)
+        sourceLanguageLabel.text = languages[sourceLanguage]
+        targetLanguageLabel.text = languages[targetLanguage]
+        sourceLanguageTextField.text = languages[sourceLanguage]
+        targetLanguageTextField.text = languages[targetLanguage]
     }
     
-    private func translateLanguageName(language: String, to userLanguage: String) -> String {
-        let translations = [
-            "en": ["fr": "Anglais", "es": "Inglés", "de": "Englisch", "it": "Inglese", "pt": "Inglês", "zh": "英语", "ja": "英語"],
-            "fr": ["en": "Français", "es": "Francés", "de": "Französisch", "it": "Francese", "pt": "Francês", "zh": "法语", "ja": "フランス語"],
-            "es": ["en": "Español", "fr": "Espagnol", "de": "Spanisch", "it": "Spagnolo", "pt": "Espanhol", "zh": "西班牙语", "ja": "スペイン語"],
-            "de": ["en": "Deutsch", "fr": "Allemand", "es": "Alemán", "it": "Tedesco", "pt": "Alemão", "zh": "德语", "ja": "ドイツ語"],
-        ]
-        return translations[language]?[userLanguage] ?? languageNames[language] ?? language
+    private func fetchLanguages() {
+        let userLanguage = settingsService.getUserLanguage()
+        translationService.fetchSupportedLanguages(targetLanguage: userLanguage) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let languages):
+                    self?.languages = languages
+                    self?.languageCodes = Array(languages.keys).sorted()
+                    self?.filteredLanguageCodes = self?.languageCodes ?? []
+                    self?.languagePicker.reloadAllComponents()
+                case .failure(let error):
+                    print("Failed to fetch languages: \(error)")
+                }
+            }
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return languages.count
+        return filteredLanguageCodes.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -168,23 +177,47 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedLanguage = languages[row]
+        let selectedLanguage = filteredLanguageCodes[row]
         if activeTextField == sourceLanguageTextField {
             sourceLanguage = selectedLanguage
-            sourceLanguageTextField.text = translateLanguageName(language: selectedLanguage, to: sourceLanguage)
+            sourceLanguageTextField.text = languages[selectedLanguage]
         } else if activeTextField == targetLanguageTextField {
             targetLanguage = selectedLanguage
-            targetLanguageTextField.text = translateLanguageName(language: selectedLanguage, to: sourceLanguage)
+            targetLanguageTextField.text = languages[selectedLanguage]
         }
         updateLanguageDisplay()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let languageCode = filteredLanguageCodes[row]
+        return languages[languageCode]
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
         
-        if let currentLanguage = textField.text, let index = languages.firstIndex(of: currentLanguage) {
+        if let currentLanguage = textField.text, let index = languageCodes.firstIndex(of: currentLanguage) {
             languagePicker.selectRow(index, inComponent: 0, animated: false)
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let searchText = (text as NSString).replacingCharacters(in: range, with: string)
+        filterLanguages(searchText: searchText)
+        return true
+    }
+    
+    private func filterLanguages(searchText: String) {
+        if searchText.isEmpty {
+            filteredLanguageCodes = languageCodes
+        } else {
+            filteredLanguageCodes = languageCodes.filter { languageCode in
+                guard let languageName = languages[languageCode] else { return false }
+                return languageName.lowercased().contains(searchText.lowercased())
+            }
+        }
+        languagePicker.reloadAllComponents()
     }
     
     private func styleTextField(_ textField: UITextField) {

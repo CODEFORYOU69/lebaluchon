@@ -83,17 +83,17 @@ class ForecastViewController: UIViewController {
         var animationName = ""
         
         switch condition.lowercased() {
-        case "clear sky":
+        case "clear sky","Clear sky":
             animationName = "sunny"
         case "few clouds", "scattered clouds", "broken clouds", "overcast clouds":
             animationName = "cloudy"
-        case "shower rain", "rain":
+        case "shower rain", "rain","light rain":
             animationName = "rainy"
         case "thunderstorm":
             animationName = "stormy"
         case "snow":
             animationName = "snowy"
-        case "mist", "light intensity drizzle","drizzle","fog":
+        case "mist", "light intensity drizzle","drizzle","fog","haze":
             animationName = "misty"
         default:
             animationName = "default"

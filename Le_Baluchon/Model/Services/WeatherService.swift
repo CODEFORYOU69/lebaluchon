@@ -37,18 +37,7 @@ enum WeatherServiceError: Error, LocalizedError, Equatable {
     }
 }
 
-struct WeatherResponse: Codable {
-    let main: Main
-    let weather: [Weather]
-    
-    struct Main: Codable {
-        let temp: Double
-    }
-    
-    struct Weather: Codable {
-        let description: String
-    }
-}
+
 
 class WeatherService {
     static let apiKey = "829a9879a4c00c7941c92290f12eaed6"

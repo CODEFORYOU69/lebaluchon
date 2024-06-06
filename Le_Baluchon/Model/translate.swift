@@ -32,6 +32,17 @@ struct Detection: Codable {
     let isReliable: Bool
     let confidence: Float
 }
+struct LanguagesResponse: Codable {
+    let data: LanguagesData
+}
+struct LanguagesData: Codable {
+    let languages: [Language]
+}
+
+struct Language: Codable {
+    let language: String
+    let name: String
+}
 
 enum TranslationError: Error {
     case noData
@@ -44,3 +55,5 @@ enum DetectionError: Error {
     case decodingError
     case apiError(String)
 }
+
+

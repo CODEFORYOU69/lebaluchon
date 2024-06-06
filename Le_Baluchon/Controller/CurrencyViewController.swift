@@ -33,6 +33,7 @@ class CurrencyViewController: UIViewController {
         self.title = "Currency Converter"
         setupTapGesture()
         currencies = conversionService.currencies
+        setDefaultCurrencies()
         fromCurrencyPicker.reloadAllComponents()
         toCurrencyPicker.reloadAllComponents()
         styleButton(convertbutton)
@@ -43,8 +44,20 @@ class CurrencyViewController: UIViewController {
         view.bringSubviewToFront(fromCurrencyFlagImageView)
         
         setFlagImageViewSize(imageView: fromCurrencyFlagImageView, size: CGSize(width: 40, height: 40))
-            setFlagImageViewSize(imageView: toCurrencyFlagImageView, size: CGSize(width: 40, height: 40))
+        setFlagImageViewSize(imageView: toCurrencyFlagImageView, size: CGSize(width: 40, height: 40))
     }
+
+    private func setDefaultCurrencies() {
+        selectedFromCurrency = currencies.first { $0.code == "USD" }
+        selectedToCurrency = currencies.first { $0.code == "EUR" }
+        if let fromCurrencyIndex = currencies.firstIndex(where: { $0.code == selectedFromCurrency?.code }),
+           let toCurrencyIndex = currencies.firstIndex(where: { $0.code == selectedToCurrency?.code }) {
+            fromCurrencyPicker.selectRow(fromCurrencyIndex, inComponent: 0, animated: false)
+            toCurrencyPicker.selectRow(toCurrencyIndex, inComponent: 0, animated: false)
+        }
+        updateCurrencyLabelsAndFlags()
+    }
+
     
 
     @IBAction func convertButtonTapped(_ sender: UIButton) {
