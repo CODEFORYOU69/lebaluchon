@@ -241,7 +241,6 @@
 				3E7DCFC72BED0F0C00E0889F /* TranslateViewController.swift */,
 				3E7DCFC92BED0F2200E0889F /* ForecastViewController.swift */,
 				3EF1588F2BF588DF0012D8E1 /* SettingsViewController.swift */,
-				3E00FE692C0BE8B800E53745 /* CardView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,6 +269,7 @@
 		3EC7C8B92C0023D3002928D1 /* style */ = {
 			isa = PBXGroup;
 			children = (
+				3E00FE692C0BE8B800E53745 /* CardView.swift */,
 				3EC7C8B72C002398002928D1 /* style.swift */,
 			);
 			path = style;

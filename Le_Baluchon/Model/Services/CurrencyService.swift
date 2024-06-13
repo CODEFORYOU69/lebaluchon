@@ -43,25 +43,23 @@ class CurrencyConversionService {
         self.userDefaults = userDefaults
         self.urlSession = urlSession
     }
-    
+
     func fetchExchangeRates(for currencyCodes: [String], completion: @escaping (Result<CurrencyMap, Error>) -> Void) {
         if let lastUpdate = userDefaults.object(forKey: lastUpdateKey) as? Date,
            let storedData = userDefaults.data(forKey: exchangeRatesKey),
            Calendar.current.isDateInToday(lastUpdate) {
-            let result = Result {
+            do {
                 let storedRates = try JSONDecoder().decode(CurrencyMap.self, from: storedData)
                 if currencyCodes.allSatisfy({ storedRates.keys.contains($0) }) {
-                    return storedRates
-                } else {
-                    throw NSError(domain: "CurrencyConversionServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Required currencies not found in cached rates"])
+                    completion(.success(storedRates))
+                    return
                 }
+            } catch {
+                // Ignorer les erreurs de décodeur, nous allons récupérer de nouvelles données
             }
-            completion(result)
-            return
         }
-
-        // If currency rates are not available or data is too old, do a new API call
-        print("Fetching new exchange rates because required currencies are not all available in cache or data is outdated.")
+        
+        // Si nous n'avons pas trouvé toutes les devises requises ou que les données ne sont pas disponibles, nous récupérons de nouvelles données
         fetchNewExchangeRates(completion: completion)
     }
 
@@ -111,4 +109,5 @@ class CurrencyConversionService {
         return convertedAmount
     }
 }
+
 

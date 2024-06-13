@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,27 +15,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="converted_image-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-LM-R3u">
-                                <rect key="frame" x="-53.666666666666657" y="176" width="500.33333333333326" height="500"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le Baluchon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-E4-JzO">
-                                <rect key="frame" x="5" y="108" width="383" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="YbH-Aj-tXl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="42"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SSD-2X-kx8">
+                                <rect key="frame" x="10" y="69" width="373" height="773"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le Baluchon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-E4-JzO">
+                                        <rect key="frame" x="82" y="0.0" width="209" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="YbH-Aj-tXl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="42"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="homeicon" translatesAutoresizingMaskIntoConstraints="NO" id="7BJ-up-uSA">
+                                        <rect key="frame" x="0.0" y="60" width="373" height="713"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pyv-LM-R3u" firstAttribute="top" secondItem="IKW-E4-JzO" secondAttribute="bottom" constant="8" id="FRF-p9-gSW"/>
-                            <constraint firstItem="pyv-LM-R3u" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PtW-tS-Bmq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IKW-E4-JzO" secondAttribute="trailing" constant="5" id="VC8-f4-77h"/>
-                            <constraint firstItem="IKW-E4-JzO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="fNn-BH-Bdg"/>
-                            <constraint firstItem="pyv-LM-R3u" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gFq-8Q-vsu"/>
+                            <constraint firstAttribute="bottom" secondItem="SSD-2X-kx8" secondAttribute="bottom" constant="10" id="IUG-nC-lTD"/>
+                            <constraint firstAttribute="trailing" secondItem="SSD-2X-kx8" secondAttribute="trailing" constant="10" id="S8t-j9-4jc"/>
+                            <constraint firstItem="SSD-2X-kx8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="10" id="Spa-xz-ChE"/>
+                            <constraint firstItem="SSD-2X-kx8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="hXs-gj-dl8"/>
                         </constraints>
                     </view>
                     <connections>
@@ -49,9 +52,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="converted_image-removebg-preview" width="500" height="500"/>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="homeicon" width="1024" height="1024"/>
     </resources>
 </document>

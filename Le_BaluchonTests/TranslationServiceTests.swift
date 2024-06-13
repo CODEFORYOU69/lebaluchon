@@ -93,7 +93,7 @@ class TranslationServiceTests: XCTestCase {
         let mockResponse = LanguagesResponse(data: LanguagesData(languages: [Language(language: "en", name: "English"), Language(language: "fr", name: "French")]))
         testURLSession.data = try? JSONEncoder().encode(mockResponse)
 
-        translationService.fetchSupportedLanguages { result in
+        translationService.fetchSupportedLanguages(targetLanguage: "en") { result in
             switch result {
             case .success(let languages):
                 XCTAssertEqual(languages["en"], "English")
@@ -111,7 +111,7 @@ class TranslationServiceTests: XCTestCase {
         let expectation = self.expectation(description: "FetchLanguagesFailure")
         testURLSession.error = NSError(domain: "TestError", code: 0, userInfo: nil)
 
-        translationService.fetchSupportedLanguages { result in
+        translationService.fetchSupportedLanguages(targetLanguage: "en") { result in
             switch result {
             case .success:
                 XCTFail("Expected failure but got success")
