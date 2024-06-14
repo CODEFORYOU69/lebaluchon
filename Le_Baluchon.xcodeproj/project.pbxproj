@@ -12,7 +12,6 @@
 		3E00FE5B2C024C8B00E53745 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5A2C024C8B00E53745 /* SettingsService.swift */; };
 		3E00FE5D2C0256B800E53745 /* SettingsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5C2C0256B800E53745 /* SettingsServiceTests.swift */; };
 		3E00FE5F2C02591600E53745 /* TestUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE5E2C02591600E53745 /* TestUrl.swift */; };
-		3E00FE612C025A6B00E53745 /* protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE602C025A6B00E53745 /* protocol.swift */; };
 		3E00FE6A2C0BE8B800E53745 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE692C0BE8B800E53745 /* CardView.swift */; };
 		3E00FE6D2C126DA800E53745 /* weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00FE6C2C126DA800E53745 /* weather.swift */; };
 		3E10E2D42BF2D3420006E483 /* translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10E2D32BF2D3420006E483 /* translate.swift */; };
@@ -46,6 +45,7 @@
 		3EF158AE2BF6B6DE0012D8E1 /* misty.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A82BF6B6DE0012D8E1 /* misty.json */; };
 		3EF158AF2BF6B6DE0012D8E1 /* cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158A92BF6B6DE0012D8E1 /* cloudy.json */; };
 		3EF158B42BF6BFD60012D8E1 /* default.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF158B32BF6BFD60012D8E1 /* default.json */; };
+		3EF894BF2C1BA0CF002792A3 /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF894BE2C1BA0CF002792A3 /* LanguageSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +79,6 @@
 		3E00FE5A2C024C8B00E53745 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		3E00FE5C2C0256B800E53745 /* SettingsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsServiceTests.swift; sourceTree = "<group>"; };
 		3E00FE5E2C02591600E53745 /* TestUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUrl.swift; sourceTree = "<group>"; };
-		3E00FE602C025A6B00E53745 /* protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocol.swift; sourceTree = "<group>"; };
 		3E00FE632C025DF500E53745 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3E00FE662C09419B00E53745 /* Le_Baluchon.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Le_Baluchon.xctestplan; sourceTree = "<group>"; };
 		3E00FE692C0BE8B800E53745 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		3EF158A82BF6B6DE0012D8E1 /* misty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = misty.json; sourceTree = "<group>"; };
 		3EF158A92BF6B6DE0012D8E1 /* cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloudy.json; sourceTree = "<group>"; };
 		3EF158B32BF6BFD60012D8E1 /* default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default.json; sourceTree = "<group>"; };
+		3EF894BE2C1BA0CF002792A3 /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +144,6 @@
 			children = (
 				3E00FE532C023FF100E53745 /* MockupTest.swift */,
 				3E00FE5E2C02591600E53745 /* TestUrl.swift */,
-				3E00FE602C025A6B00E53745 /* protocol.swift */,
 			);
 			path = Mockup;
 			sourceTree = "<group>";
@@ -241,6 +240,7 @@
 				3E7DCFC72BED0F0C00E0889F /* TranslateViewController.swift */,
 				3E7DCFC92BED0F2200E0889F /* ForecastViewController.swift */,
 				3EF1588F2BF588DF0012D8E1 /* SettingsViewController.swift */,
+				3EF894BE2C1BA0CF002792A3 /* LanguageSelectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -397,6 +397,7 @@
 				3E10E2D42BF2D3420006E483 /* translate.swift in Sources */,
 				3E00FE5F2C02591600E53745 /* TestUrl.swift in Sources */,
 				3E7DCF932BECFD3A00E0889F /* AppDelegate.swift in Sources */,
+				3EF894BF2C1BA0CF002792A3 /* LanguageSelectionViewController.swift in Sources */,
 				3EF158902BF588DF0012D8E1 /* SettingsViewController.swift in Sources */,
 				3E7DCFC82BED0F0C00E0889F /* TranslateViewController.swift in Sources */,
 				3EF158932BF696F80012D8E1 /* WeatherService.swift in Sources */,
@@ -406,7 +407,6 @@
 				3EC7C8B82C002398002928D1 /* style.swift in Sources */,
 				3E7DD0172BF1674900E0889F /* CurrencyService.swift in Sources */,
 				3E7DCFC62BED0EF600E0889F /* CurrencyViewController.swift in Sources */,
-				3E00FE612C025A6B00E53745 /* protocol.swift in Sources */,
 				3E00FE542C023FF100E53745 /* MockupTest.swift in Sources */,
 				3E747C1B2BF2DBA30061E19E /* translateService.swift in Sources */,
 				3E00FE5B2C024C8B00E53745 /* SettingsService.swift in Sources */,

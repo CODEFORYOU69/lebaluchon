@@ -5,10 +5,10 @@
 //  Created by younes ouasmi on 09/05/2024.
 //
 
-
 import UIKit
 
 class CurrencyViewController: UIViewController {
+    // Service for currency conversion
     private let conversionService = CurrencyConversionService()
     private var exchangeRates: [String: Double]?
     private var selectedFromCurrency: Currency?
@@ -47,6 +47,7 @@ class CurrencyViewController: UIViewController {
         setFlagImageViewSize(imageView: toCurrencyFlagImageView, size: CGSize(width: 40, height: 40))
     }
 
+    // Set default currencies for conversion
     private func setDefaultCurrencies() {
         selectedFromCurrency = currencies.first { $0.code == "USD" }
         selectedToCurrency = currencies.first { $0.code == "EUR" }
@@ -58,8 +59,7 @@ class CurrencyViewController: UIViewController {
         updateCurrencyLabelsAndFlags()
     }
 
-    
-
+    // Action triggered when the convert button is tapped
     @IBAction func convertButtonTapped(_ sender: UIButton) {
         guard let amountText = amountTextField.text,
               let amount = Double(amountText),
@@ -67,25 +67,19 @@ class CurrencyViewController: UIViewController {
               let fromCurrency = selectedFromCurrency,
               let toCurrency = selectedToCurrency else {
             resultLabel.text = "Invalid input or exchange rates not available"
-            print("Invalid input or exchange rates not available")
             return
         }
         
-        print("Amount: \(amount)")
-        print("From Currency: \(fromCurrency.code)")
-        print("To Currency: \(toCurrency.code)")
-        print("Stored Rates: \(rates)")
         if let convertedAmount = conversionService.convert(amount: amount, from: fromCurrency.code, to: toCurrency.code, rates: rates) {
             resultLabel.text = String(format: "Result: %.2f \(toCurrency.code)", convertedAmount)
-            print("Conversion succeeded: \(convertedAmount) \(toCurrency.code)")
             
         } else {
             resultLabel.text = "Conversion failed"
-            print("Conversion failed")
             
         }
     }
     
+    // Action triggered when the swap button is tapped
     @IBAction func swapButtonTapped(_ sender: UIButton) {
         swap(&selectedFromCurrency, &selectedToCurrency)
         if let fromCurrencyIndex = currencies.firstIndex(where: { $0.code == selectedFromCurrency?.code }),
@@ -97,6 +91,7 @@ class CurrencyViewController: UIViewController {
         fetchExchangeRates()
     }
 
+    // Fetch exchange rates from the service
     private func fetchExchangeRates() {
         guard let fromCode = selectedFromCurrency?.code, let toCode = selectedToCurrency?.code else {
             print("Currency codes not selected")
@@ -117,15 +112,18 @@ class CurrencyViewController: UIViewController {
         }
     }
     
+    // Setup tap gesture to dismiss keyboard
     private func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
     
+    // Dismiss keyboard action
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
+    // Style for labels
     private func styleLabels() {
         let labels = [fromLabel, toLabel, convertCurrencyLabel]
         for label in labels {
@@ -138,6 +136,7 @@ class CurrencyViewController: UIViewController {
         }
     }
     
+    // Style for buttons
     private func styleButtons() {
         convertbutton.layer.cornerRadius = 10
         convertbutton.layer.shadowColor = UIColor.black.cgColor
@@ -147,6 +146,8 @@ class CurrencyViewController: UIViewController {
         convertbutton.layer.borderWidth = 1
         convertbutton.layer.borderColor = UIColor.darkGray.cgColor
     }
+    
+    // Set size for flag image views
     private func setFlagImageViewSize(imageView: UIImageView, size: CGSize) {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -154,6 +155,8 @@ class CurrencyViewController: UIViewController {
             imageView.heightAnchor.constraint(equalToConstant: size.height)
         ])
     }
+    
+    // Update currency labels and flags
     private func updateCurrencyLabelsAndFlags() {
         if let fromCurrency = selectedFromCurrency {
             fromCurrencyFlagImageView.image = UIImage(named: fromCurrency.flag)
@@ -179,16 +182,16 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let currency = currencies[row]
         
-        // Create container for lines
+        // Create container for the cell
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
         
-        // Configure flag
+        // Configure flag image view
         let flag = UIImage(named: currency.flag)
         let flagImageView = UIImageView(image: flag)
         flagImageView.contentMode = .scaleAspectFit
         flagImageView.frame = CGRect(x: 10, y: 5, width: 30, height: 30)
         
-        // Configure contry code label and currency
+        // Configure label for currency code and country
         let label = UILabel()
         label.text = "\(currency.code) - \(currency.country)"
         label.frame = CGRect(x: 60, y: 0, width: 180, height: 40)
@@ -198,7 +201,7 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         label.textAlignment = .left
         label.textColor = UIColor.black
         
-        // add subview to container
+        // Add flag image view and label to the container
         container.addSubview(flagImageView)
         container.addSubview(label)
         

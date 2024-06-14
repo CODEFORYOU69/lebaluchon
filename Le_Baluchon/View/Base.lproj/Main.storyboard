@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mk-kF-XWm">
-                                <rect key="frame" x="5" y="84" width="383" height="30"/>
+                                <rect key="frame" x="5" y="128" width="383" height="30"/>
                                 <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Tig-s0-ly4"/>
@@ -298,27 +298,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DUV-x8-VKg" userLabel="SettingView">
-                                <rect key="frame" x="15" y="134" width="363" height="600"/>
+                                <rect key="frame" x="15" y="178" width="363" height="556"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1p-mb-wdY" userLabel="LanguageSettingCard" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="363" height="184"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="363" height="169.33333333333334"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1Na-As-8qd" userLabel="LanguageSettingView">
-                                                <rect key="frame" x="5" y="5" width="353" height="174"/>
+                                                <rect key="frame" x="5" y="5" width="353" height="159.33333333333334"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8Z-tP-7Tw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="79.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="72.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bUC-dS-Ly4">
-                                                        <rect key="frame" x="0.0" y="94.666666666666657" width="353" height="79.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="87.333333333333314" width="353" height="72"/>
                                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="nRM-bm-vjG" id="KeK-bN-X6G"/>
+                                                            <segue destination="7Ie-4o-dHA" kind="show" identifier="showLanguageSelection" id="sZ0-u4-X3U"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -333,19 +334,19 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M41-la-GIt" userLabel="HomeLocationSetttingCard" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="208" width="363" height="184"/>
+                                        <rect key="frame" x="0.0" y="193.33333333333331" width="363" height="169.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ACO-ex-EoT" userLabel="HomeLocationSettingView">
-                                                <rect key="frame" x="5" y="5" width="353" height="174"/>
+                                                <rect key="frame" x="5" y="5" width="353" height="159.33333333333334"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7g-T3-DLa" userLabel="Location">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="79.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="72.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f5H-eY-pAs">
-                                                        <rect key="frame" x="0.0" y="94.666666666666686" width="353" height="79.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="87.333333333333371" width="353" height="72"/>
                                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -367,19 +368,19 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-WE-o8M" userLabel="TravelLocationSetttingCard" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="416" width="363" height="184"/>
+                                        <rect key="frame" x="0.0" y="386.66666666666663" width="363" height="169.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZAi-CL-XUU" userLabel="TravelLocationSetttingView">
-                                                <rect key="frame" x="5" y="5" width="353" height="174"/>
+                                                <rect key="frame" x="5" y="5" width="353" height="159.33333333333334"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV1-it-VC8" userLabel="Current Location">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="79.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="72.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qej-Gd-RsV">
-                                                        <rect key="frame" x="0.0" y="94.666666666666629" width="353" height="79.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="87.333333333333371" width="353" height="72"/>
                                                         <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" name="SFPro-ExpandedMedium" family="SF Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -419,9 +420,7 @@
                             <outletCollection property="gestureRecognizers" destination="amm-jc-gPa" appends="YES" id="JX7-ZM-ze1"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="settings" image="gearshape" catalog="system" id="1kO-6j-KgI" userLabel="Settings">
-                        <color key="badgeColor" red="0.74509805439999999" green="0.63921570780000003" blue="0.64313727620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="1yU-Iq-jpU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="homeLocationTextField" destination="f5H-eY-pAs" id="hcW-bl-79n"/>
@@ -438,7 +437,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-412.5" y="972.88732394366195"/>
+            <point key="canvasLocation" x="513.74045801526711" y="972.53521126760563"/>
         </scene>
         <!--Translate-->
         <scene sceneID="txJ-5w-oel">
@@ -449,7 +448,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSLATE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RO4-qS-qis">
-                                <rect key="frame" x="5" y="64" width="383" height="30"/>
+                                <rect key="frame" x="5" y="108" width="383" height="30"/>
                                 <color key="backgroundColor" red="0.93115626799999995" green="0.90736428390000001" blue="0.87132135109999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="MO6-Cf-aDw"/>
@@ -459,13 +458,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="VQJ-Xg-ZcG" userLabel="translateLogicView">
-                                <rect key="frame" x="7" y="114" width="381" height="620"/>
+                                <rect key="frame" x="7" y="158" width="381" height="576"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1L-0H-Czk" userLabel="originView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="0.0" width="351" height="196"/>
+                                        <rect key="frame" x="15" y="0.0" width="351" height="181.33333333333334"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sSS-8A-lQF">
-                                                <rect key="frame" x="5" y="5" width="341" height="186"/>
+                                                <rect key="frame" x="5" y="5" width="341" height="171.33333333333334"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="left" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6jf-zR-BmJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="341" height="20.333333333333332"/>
@@ -485,7 +484,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OaG-qb-M0u">
-                                                        <rect key="frame" x="0.0" y="20.333333333333343" width="341" height="165.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="20.333333333333343" width="341" height="151"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="20"/>
@@ -510,10 +509,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODc-6S-mtC" userLabel="translatedView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="212" width="351" height="196"/>
+                                        <rect key="frame" x="15" y="197.33333333333331" width="351" height="181.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3nh-3n-cBm">
-                                                <rect key="frame" x="5" y="5" width="341" height="186"/>
+                                                <rect key="frame" x="5" y="5" width="341" height="171.33333333333334"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="left" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Vf0-73-8pM">
                                                         <rect key="frame" x="0.0" y="0.0" width="341" height="21.666666666666668"/>
@@ -533,7 +532,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3T3-XT-Ktk">
-                                                        <rect key="frame" x="0.0" y="21.666666666666686" width="341" height="164.33333333333334"/>
+                                                        <rect key="frame" x="0.0" y="21.666666666666686" width="341" height="149.66666666666666"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="SFPro-CompressedRegular" family="SF Pro" pointSize="20"/>
@@ -556,13 +555,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hL-gv-7hp" userLabel="chooseLanguageView" customClass="CardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="424" width="351" height="196"/>
+                                        <rect key="frame" x="15" y="394.66666666666663" width="351" height="181.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UTj-7j-3VE">
-                                                <rect key="frame" x="5" y="5" width="341" height="186"/>
+                                                <rect key="frame" x="5" y="5" width="341" height="171.33333333333334"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="rxo-dN-DQo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="341" height="136"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="341" height="121.33333333333333"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="h6c-YE-9DV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="341" height="34.333333333333336"/>
@@ -572,6 +571,9 @@
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <connections>
+                                                                            <segue destination="7Ie-4o-dHA" kind="show" identifier="showLanguageSelection" id="e5x-uh-zPY"/>
+                                                                        </connections>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT8-1D-vvd">
                                                                         <rect key="frame" x="145.66666666666666" y="0.0" width="50" height="34.333333333333336"/>
@@ -588,6 +590,9 @@
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <connections>
+                                                                            <segue destination="7Ie-4o-dHA" kind="show" identifier="showLanguageSelection" id="DDr-Uj-up9"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
@@ -600,7 +605,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="II0-1g-EXC">
-                                                                <rect key="frame" x="0.0" y="88.333333333333371" width="341" height="47.666666666666657"/>
+                                                                <rect key="frame" x="0.0" y="88.333333333333371" width="341" height="33"/>
                                                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="18"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" title="TRANSLATE">
@@ -614,7 +619,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ok3-9T-6hK">
-                                                        <rect key="frame" x="0.0" y="136" width="341" height="50"/>
+                                                        <rect key="frame" x="0.0" y="121.33333333333337" width="341" height="50"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Semibold" family="SF Pro" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemPinkColor"/>
                                                         <nil key="highlightedColor"/>
@@ -658,15 +663,13 @@
                             <outletCollection property="gestureRecognizers" destination="LT6-zT-BlV" appends="YES" id="ge2-fM-Q5E"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="translate" image="character.bubble" catalog="system" landscapeImage="globe" id="bX9-I6-eia">
-                        <color key="badgeColor" red="0.90196079019999997" green="0.67450982329999998" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="vMU-DD-Utx"/>
                     <connections>
                         <outlet property="originTranslate" destination="OaG-qb-M0u" id="6x5-BG-Ukn"/>
                         <outlet property="resultLabel" destination="Ok3-9T-6hK" id="qk8-YM-yoD"/>
                         <outlet property="sourceLanguageLabel" destination="hY9-qg-ozi" id="V8L-El-476"/>
                         <outlet property="sourceLanguageTextField" destination="8y0-2K-1Xy" id="Nl2-gq-TNJ"/>
-                        <outlet property="swapLanguagesButtonTapped" destination="VT8-1D-vvd" id="sYe-0p-uTj"/>
+                        <outlet property="swapLanguagesButton" destination="VT8-1D-vvd" id="PDL-Bz-Nmb"/>
                         <outlet property="targetLanguageLabel" destination="M62-x1-95r" id="cTc-eX-0ok"/>
                         <outlet property="targetLanguageTextField" destination="fmM-mv-Nqy" id="fIt-F3-roY"/>
                         <outlet property="translateButton" destination="II0-1g-EXC" id="Zg7-lh-XZ7"/>
@@ -681,7 +684,62 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="701.52671755725191" y="-472.53521126760563"/>
+            <point key="canvasLocation" x="1628.2442748091603" y="-472.53521126760563"/>
+        </scene>
+        <!--Language Selection View Controller-->
+        <scene sceneID="qcc-SR-Qxj">
+            <objects>
+                <viewController id="7Ie-4o-dHA" customClass="LanguageSelectionViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0bd-mB-ORA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dre-e4-9T4">
+                                <rect key="frame" x="10" y="118" width="373" height="550"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LanguageCell" id="Tfs-Mo-Ee6">
+                                        <rect key="frame" x="0.0" y="50" width="373" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LanguageCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tfs-Mo-Ee6" id="hcK-fG-AFp">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="LanguageCell">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="u45-ml-Kfw">
+                                <rect key="frame" x="5" y="678" width="383" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7Ie-4o-dHA" id="lBW-rU-BQz"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tFM-sg-BAE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Dre-e4-9T4" firstAttribute="leading" secondItem="tFM-sg-BAE" secondAttribute="leading" constant="10" id="H1C-8H-4PF"/>
+                            <constraint firstItem="tFM-sg-BAE" firstAttribute="bottom" secondItem="u45-ml-Kfw" secondAttribute="bottom" constant="35" id="JaH-RL-J8f"/>
+                            <constraint firstItem="u45-ml-Kfw" firstAttribute="leading" secondItem="0bd-mB-ORA" secondAttribute="leading" constant="5" id="dCx-3V-mMf"/>
+                            <constraint firstItem="u45-ml-Kfw" firstAttribute="top" secondItem="Dre-e4-9T4" secondAttribute="bottom" constant="10" id="dLc-4s-k3X"/>
+                            <constraint firstItem="tFM-sg-BAE" firstAttribute="trailing" secondItem="u45-ml-Kfw" secondAttribute="trailing" constant="5" id="fO0-Jr-OBh"/>
+                            <constraint firstItem="Dre-e4-9T4" firstAttribute="top" secondItem="tFM-sg-BAE" secondAttribute="top" constant="15" id="hs7-xf-pzX"/>
+                            <constraint firstItem="tFM-sg-BAE" firstAttribute="trailing" secondItem="Dre-e4-9T4" secondAttribute="trailing" constant="10" id="w34-vC-ebn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dl7-Ch-hr0"/>
+                    <connections>
+                        <outlet property="searchBar" destination="u45-ml-Kfw" id="t1K-UK-LDS"/>
+                        <outlet property="tableView" destination="Dre-e4-9T4" id="Pns-E7-N0F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SEM-wW-QGP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2556.4885496183206" y="-454.22535211267609"/>
         </scene>
         <!--Currency-->
         <scene sceneID="O42-d0-qN8">
@@ -914,17 +972,62 @@
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
-                        <segue destination="O7U-Lk-ud5" kind="relationship" relationship="viewControllers" id="5Xw-jB-LqO"/>
+                        <segue destination="kQe-2a-KHx" kind="relationship" relationship="viewControllers" id="5Xw-jB-LqO"/>
                         <segue destination="pwI-Ft-qzz" kind="relationship" relationship="viewControllers" id="WY4-Kg-oqR"/>
                         <segue destination="n6F-1A-vPC" kind="relationship" relationship="viewControllers" id="YUd-LQ-EvJ"/>
-                        <segue destination="nRM-bm-vjG" kind="relationship" relationship="viewControllers" id="UAa-Bd-cPx"/>
+                        <segue destination="PjW-FH-bao" kind="relationship" relationship="viewControllers" id="UAa-Bd-cPx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXK-U8-aU1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1668" y="-428"/>
         </scene>
+        <!--translate-->
+        <scene sceneID="Kkp-93-4wx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kQe-2a-KHx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="translate" image="character.bubble" catalog="system" landscapeImage="globe" id="bX9-I6-eia">
+                        <color key="badgeColor" red="0.90196079019999997" green="0.67450982329999998" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QZz-6P-C4s">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="O7U-Lk-ud5" kind="relationship" relationship="rootViewController" id="dHm-l8-6XA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ZB-AY-uxg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="701.52671755725191" y="-472.53521126760563"/>
+        </scene>
+        <!--settings-->
+        <scene sceneID="IXP-E2-74I">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PjW-FH-bao" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="settings" image="gearshape" catalog="system" id="1kO-6j-KgI" userLabel="Settings">
+                        <color key="badgeColor" red="0.74509805439999999" green="0.63921570780000003" blue="0.64313727620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll1-Zz-Wyt">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nRM-bm-vjG" kind="relationship" relationship="rootViewController" id="OKh-Gz-6vQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XPs-T5-wes" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-412.97709923664121" y="972.53521126760563"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sZ0-u4-X3U"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.left.arrow.right" catalog="system" width="120" height="128"/>
         <image name="character.bubble" catalog="system" width="128" height="110"/>
@@ -932,6 +1035,9 @@
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="globe" catalog="system" width="128" height="123"/>
         <image name="sun.rain" catalog="system" width="128" height="120"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

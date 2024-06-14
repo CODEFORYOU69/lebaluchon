@@ -7,8 +7,8 @@
 
 import UIKit
 
-class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
+class TranslateViewController: UIViewController, LanguageSelectionDelegate {
+
     @IBOutlet weak var translatedText: UITextView!
     @IBOutlet weak var originTranslate: UITextView!
     @IBOutlet weak var translateButton: UIButton!
@@ -16,19 +16,16 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var translateTitle: UILabel!
     @IBOutlet weak var targetLanguageLabel: UILabel!
     @IBOutlet weak var sourceLanguageLabel: UILabel!
-    @IBOutlet weak var swapLanguagesButtonTapped: UIButton!
+    @IBOutlet weak var swapLanguagesButton: UIButton!
     @IBOutlet weak var sourceLanguageTextField: UITextField!
     @IBOutlet weak var targetLanguageTextField: UITextField!
+    
+    
     
     var sourceLanguage = "en"
     var targetLanguage = "fr"
     
     var languages: [String: String] = [:] // Dictionary to store language codes and names
-    var languageCodes: [String] = [] // Array to store the language codes for pickerView
-    var filteredLanguageCodes: [String] = [] // Array to store filtered language codes
-    
-    let languagePicker = UIPickerView()
-    var activeTextField: UITextField?
     
     var translationService: TranslationService!
     var settingsService: SettingsService!
@@ -49,18 +46,16 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadUserLanguage()
         updateLanguageDisplay()
     }
     
+    // Called when user language changes
     @objc private func userLanguageChanged() {
         fetchLanguages()
     }
     
-    // Configuration de l'interface utilisateur
+    // Configuration user interface
     private func setupUI() {
-        setupTapGesture()
-        setupLanguagePicker()
         loadUserLanguage()
         updateLanguageDisplay()
         
@@ -69,55 +64,67 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         styleTextView(translatedText)
         styleTextView(originTranslate)
         styleButton(translateButton)
-    }
-    
-    private func setupTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    private func setupLanguagePicker() {
-        languagePicker.delegate = self
-        languagePicker.dataSource = self
-        sourceLanguageTextField.inputView = languagePicker
-        targetLanguageTextField.inputView = languagePicker
-        sourceLanguageTextField.delegate = self
-        targetLanguageTextField.delegate = self
         
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
-        toolbar.setItems([doneButton], animated: true)
-        sourceLanguageTextField.inputAccessoryView = toolbar
-        targetLanguageTextField.inputAccessoryView = toolbar
+        let sourceTapGesture = UITapGestureRecognizer(target: self, action: #selector(sourceLanguageTextFieldTapped))
+        sourceLanguageTextField.addGestureRecognizer(sourceTapGesture)
+        
+        let targetTapGesture = UITapGestureRecognizer(target: self, action: #selector(targetLanguageTextFieldTapped))
+        targetLanguageTextField.addGestureRecognizer(targetTapGesture)
     }
     
-    @objc private func doneButtonTapped() {
-        activeTextField?.resignFirstResponder()
+    // Handle tap on source language text field
+    @objc private func sourceLanguageTextFieldTapped() {
+        performSegue(withIdentifier: "showLanguageSelection", sender: sourceLanguageTextField)
     }
     
+    // Handle tap on target language text field
+    @objc private func targetLanguageTextFieldTapped() {
+        performSegue(withIdentifier: "showLanguageSelection", sender: targetLanguageTextField)
+    }
+    
+    // Prepare for segue to LanguageSelectionViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLanguageSelection",
+           let languageSelectionVC = segue.destination as? LanguageSelectionViewController,
+           let textField = sender as? UITextField {
+            languageSelectionVC.languages = self.languages
+            languageSelectionVC.textField = textField
+            languageSelectionVC.delegate = self
+        }
+    }
+    
+    // Handle language selection
+    func didSelectLanguage(_ languageCode: String, languageName: String, for textField: UITextField) {
+        if textField == sourceLanguageTextField {
+            sourceLanguage = languageCode
+        } else if textField == targetLanguageTextField {
+            targetLanguage = languageCode
+        }
+        updateLanguageDisplay()
+    }
+
+    // Load user language from settings
     private func loadUserLanguage() {
         let userLanguage = settingsService.getUserLanguage()
         sourceLanguage = userLanguage
         sourceLanguageTextField.text = languages[userLanguage] ?? ""
     }
     
+    // Swap source and target languages
     @IBAction private func swapLanguagesButtonTapped(_ sender: UIButton) {
         (sourceLanguage, targetLanguage) = (targetLanguage, sourceLanguage)
         updateLanguageDisplay()
         (originTranslate.text, translatedText.text) = (translatedText.text, originTranslate.text)
     }
     
+    // Handle translate button action
     @IBAction private func translateButtonAction(_ sender: UIButton) {
         guard let text = originTranslate.text, !text.isEmpty else {
             resultLabel.text = "Le texte d'entrée est vide"
             return
         }
         
+        // Detect the language of the input text
         translationService.detectLanguage(for: text) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -126,6 +133,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                     self?.sourceLanguageTextField.text = self?.languages[detectedLanguage] ?? detectedLanguage
                     self?.updateLanguageDisplay()
                     
+                    // Translate the text to the target language
                     self?.translationService.translate(text: text, from: detectedLanguage, to: self?.targetLanguage ?? "en") { result in
                         DispatchQueue.main.async {
                             switch result {
@@ -144,6 +152,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
+    // Update language labels and text fields
     private func updateLanguageDisplay() {
         sourceLanguageLabel.text = languages[sourceLanguage]
         targetLanguageLabel.text = languages[targetLanguage]
@@ -151,6 +160,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         targetLanguageTextField.text = languages[targetLanguage]
     }
     
+    // Fetch supported languages from the translation service
     private func fetchLanguages() {
         let userLanguage = settingsService.getUserLanguage()
         translationService.fetchSupportedLanguages(targetLanguage: userLanguage) { [weak self] result in
@@ -158,9 +168,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 switch result {
                 case .success(let languages):
                     self?.languages = languages
-                    self?.languageCodes = Array(languages.keys).sorted()
-                    self?.filteredLanguageCodes = self?.languageCodes ?? []
-                    self?.languagePicker.reloadAllComponents()
+                    self?.updateLanguageDisplay()
                 case .failure(let error):
                     print("Failed to fetch languages: \(error)")
                 }
@@ -168,75 +176,4 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return filteredLanguageCodes.count
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedLanguage = filteredLanguageCodes[row]
-        if activeTextField == sourceLanguageTextField {
-            sourceLanguage = selectedLanguage
-            sourceLanguageTextField.text = languages[selectedLanguage]
-        } else if activeTextField == targetLanguageTextField {
-            targetLanguage = selectedLanguage
-            targetLanguageTextField.text = languages[selectedLanguage]
-        }
-        updateLanguageDisplay()
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let languageCode = filteredLanguageCodes[row]
-        return languages[languageCode]
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
-        
-        if let currentLanguage = textField.text, let index = languageCodes.firstIndex(of: currentLanguage) {
-            languagePicker.selectRow(index, inComponent: 0, animated: false)
-        }
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-        let searchText = (text as NSString).replacingCharacters(in: range, with: string)
-        filterLanguages(searchText: searchText)
-        return true
-    }
-    
-    private func filterLanguages(searchText: String) {
-        if searchText.isEmpty {
-            filteredLanguageCodes = languageCodes
-        } else {
-            filteredLanguageCodes = languageCodes.filter { languageCode in
-                guard let languageName = languages[languageCode] else { return false }
-                return languageName.lowercased().contains(searchText.lowercased())
-            }
-        }
-        languagePicker.reloadAllComponents()
-    }
-    
-    private func styleTextField(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 0.5
-        textField.layer.cornerRadius = 5
-    }
-    
-    private func styleTextView(_ textView: UITextView) {
-        textView.layer.borderColor = UIColor.lightGray.cgColor
-        textView.layer.borderWidth = 0.5
-        textView.layer.cornerRadius = 5
-    }
-    
-    private func styleButton(_ button: UIButton) {
-        button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 4
-    }
 }

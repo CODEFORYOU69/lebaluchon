@@ -7,36 +7,27 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class SettingsViewController: UIViewController, LanguageSelectionDelegate {
     
     @IBOutlet weak var userLanguageTextField: UITextField!
     @IBOutlet weak var homeLocationTextField: UITextField!
     @IBOutlet weak var travelLocationTextField: UITextField!
     
-    let languages = ["en", "fr", "es", "de", "it", "pt", "zh", "ja"]
-    let languageNames = [
-        "en": "English",
-        "fr": "Français",
-        "es": "Español",
-        "de": "Deutsch",
-        "it": "Italiano",
-        "pt": "Português",
-        "zh": "中文",
-        "ja": "日本語"
-    ]
-    
-    let languagePicker = UIPickerView()
     let settingsService = SettingsService()
-
+    var languages: [String: String] = [:] // Store fetched languages
+    
     @IBOutlet weak var settingsTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLanguagePicker()
         
-        userLanguageTextField.text = languageNames[settingsService.getUserLanguage()]
+        setupUI()
+        
+        userLanguageTextField.text = settingsService.getUserLanguage()
         homeLocationTextField.text = settingsService.getHomeLocation()
         travelLocationTextField.text = settingsService.getTravelLocation()
+        
+        fetchLanguages()
     }
     
     @IBAction func homeLocationTextFieldEditingDidEnd(_ sender: UITextField) {
@@ -47,45 +38,31 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         settingsService.setTravelLocation(sender.text ?? "")
     }
     
-    func setupLanguagePicker() {
-        languagePicker.delegate = self
-        languagePicker.dataSource = self
-        userLanguageTextField.inputView = languagePicker
+    private func setupUI() {
+        setupTapGesture()
         
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
-        toolbar.setItems([doneButton], animated: true)
-        userLanguageTextField.inputAccessoryView = toolbar
+        let userLanguageTapGesture = UITapGestureRecognizer(target: self, action: #selector(userLanguageTextFieldTapped))
+        userLanguageTextField.addGestureRecognizer(userLanguageTapGesture)
     }
     
-    @objc func doneButtonTapped() {
-        userLanguageTextField.resignFirstResponder()
+    @objc private func userLanguageTextFieldTapped() {
+        performSegue(withIdentifier: "showLanguageSelection", sender: userLanguageTextField)
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return languages.count
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLanguageSelection",
+           let languageSelectionVC = segue.destination as? LanguageSelectionViewController,
+           let textField = sender as? UITextField {
+            languageSelectionVC.languages = self.languages
+            languageSelectionVC.textField = textField
+            languageSelectionVC.delegate = self
+        }
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return languageNames[languages[row]]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedLanguage = languages[row]
-        userLanguageTextField.text = languageNames[selectedLanguage]
-        settingsService.setUserLanguage(selectedLanguage)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if let currentLanguage = textField.text, let index = languages.firstIndex(of: currentLanguage) {
-            languagePicker.selectRow(index, inComponent: 0, animated: false)
-        } else {
-            languagePicker.selectRow(0, inComponent: 0, animated: false)
+    func didSelectLanguage(_ languageCode: String, languageName: String, for textField: UITextField) {
+        textField.text = languageName
+        if textField == userLanguageTextField {
+            settingsService.setUserLanguage(languageCode)
         }
     }
     
@@ -96,5 +73,21 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    // Fetch the available languages
+    private func fetchLanguages() {
+        let translationService = TranslationService()
+        
+        translationService.fetchSupportedLanguages(targetLanguage: settingsService.getUserLanguage()) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let fetchedLanguages):
+                    self?.languages = fetchedLanguages
+                case .failure(let error):
+                    print("Failed to fetch languages: \(error)")
+                }
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ class SettingsService {
 
     func setUserLanguage(_ language: String) {
         userDefaults.set(language, forKey: "userLanguage")
-        NotificationCenter.default.post(name: .userLanguageChanged, object: nil)
+        NotificationCenter.default.post(name: .userLanguageChanged, object: nil) // Post notification here
     }
 
     func getHomeLocation() -> String {

@@ -7,17 +7,21 @@
 
 import Foundation
 
+// MockURLProtocol is used to mock network responses
 class MockURLProtocol: URLProtocol {
     static var mockResponse: (data: Data?, response: URLResponse?, error: Error?)?
 
+    // Determines if the protocol can handle the given request
     override class func canInit(with request: URLRequest) -> Bool {
         return true
     }
 
+    // Returns a canonical version of the request
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
 
+    // Starts loading the request with the mock response
     override func startLoading() {
         if let mockResponse = MockURLProtocol.mockResponse {
             if let data = mockResponse.data {
@@ -33,11 +37,13 @@ class MockURLProtocol: URLProtocol {
         self.client?.urlProtocolDidFinishLoading(self)
     }
 
+    // Stops loading the request (no-op in this case)
     override func stopLoading() {
         // No-op
     }
 }
 
+// MockURLSession is used to create a session with the mock protocol
 class MockURLSession {
     static func createMockSession(data: Data?, response: URLResponse?, error: Error?) -> URLSession {
         MockURLProtocol.mockResponse = (data: data, response: response, error: error)

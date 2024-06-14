@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Struct to decode the response from the currency exchange API
 struct ExchangeRatesResponse: Codable {
     let success: Bool
     let timestamp: Int
@@ -15,8 +16,10 @@ struct ExchangeRatesResponse: Codable {
     let rates: [String: Double]
 }
 
+// Type alias for a dictionary mapping currency codes to their exchange rates
 typealias CurrencyMap = [String: Double]
 
+// Service for currency conversion
 class CurrencyConversionService {
     private let apiKey: String
     private let baseUrl: String
@@ -25,6 +28,7 @@ class CurrencyConversionService {
     private let exchangeRatesKey = "exchangeRates"
     private let lastUpdateKey = "lastUpdate"
 
+    // List of supported currencies
     let currencies: [Currency] = [
         Currency(code: "USD", country: "United States", flag: "us"),
         Currency(code: "EUR", country: "European Union", flag: "eu"),
@@ -34,6 +38,7 @@ class CurrencyConversionService {
         Currency(code: "MAD", country: "Morocco", flag: "ma"),
     ]
 
+    // Initialize the service with default values for API key, base URL, user defaults, and URL session
     init(apiKey: String = "7d28069a0e2be3744db223ee0dcdcd14",
          baseUrl: String = "http://data.fixer.io/api/latest",
          userDefaults: UserDefaults = .standard,
@@ -44,6 +49,7 @@ class CurrencyConversionService {
         self.urlSession = urlSession
     }
 
+    // Fetch exchange rates for the given currency codes
     func fetchExchangeRates(for currencyCodes: [String], completion: @escaping (Result<CurrencyMap, Error>) -> Void) {
         if let lastUpdate = userDefaults.object(forKey: lastUpdateKey) as? Date,
            let storedData = userDefaults.data(forKey: exchangeRatesKey),
@@ -55,14 +61,15 @@ class CurrencyConversionService {
                     return
                 }
             } catch {
-                // Ignorer les erreurs de décodeur, nous allons récupérer de nouvelles données
+                // Ignore decoder errors, we will fetch new data
             }
         }
         
-        // Si nous n'avons pas trouvé toutes les devises requises ou que les données ne sont pas disponibles, nous récupérons de nouvelles données
+        // If required currencies are not found or data is not available, fetch new data
         fetchNewExchangeRates(completion: completion)
     }
 
+    // Fetch new exchange rates from the API
     private func fetchNewExchangeRates(completion: @escaping (Result<CurrencyMap, Error>) -> Void) {
         let urlString = "\(baseUrl)?access_key=\(apiKey)"
         guard let url = URL(string: urlString) else {
@@ -100,6 +107,7 @@ class CurrencyConversionService {
         task.resume()
     }
 
+    // Convert an amount from one currency to another using the given exchange rates
     func convert(amount: Double, from: String, to: String, rates: [String: Double]) -> Double? {
         guard let fromRate = rates[from], let toRate = rates[to] else {
             return nil
@@ -109,5 +117,3 @@ class CurrencyConversionService {
         return convertedAmount
     }
 }
-
-
